@@ -149,3 +149,81 @@ function updateActiveNavLink() {
 window.addEventListener('scroll', updateActiveNavLink);
 
 // Removed dynamic JSON rendering. Using hardcoded content in index.html.
+
+// Mobile: show a couple of projects, then a Show More button
+(function setupMobileProjectToggle() {
+    const grid = document.querySelector('.projects-grid');
+    if (!grid) return;
+
+    const SHOW_COUNT = 2; // show first two on mobile
+    let moreWrapper = null;
+    let button = null;
+
+    const mq = window.matchMedia('(max-width: 767px)');
+
+    function hideExtra() {
+        const cards = Array.from(grid.querySelectorAll('.project-card'));
+        const hidden = [];
+        cards.forEach((card, idx) => {
+            if (idx >= SHOW_COUNT) {
+                card.style.display = 'none';
+                hidden.push(card);
+            } else {
+                card.style.display = '';
+            }
+        });
+        if (hidden.length > 0) {
+            ensureButton();
+        } else {
+            removeButton();
+        }
+    }
+
+    function showAll() {
+        const cards = grid.querySelectorAll('.project-card');
+        cards.forEach(card => card.style.display = '');
+        removeButton();
+    }
+
+    function ensureButton() {
+        if (!moreWrapper) {
+            moreWrapper = document.createElement('div');
+            moreWrapper.style.textAlign = 'center';
+            moreWrapper.style.marginTop = '1rem';
+            grid.parentElement.appendChild(moreWrapper);
+        }
+        if (!button) {
+            button = document.createElement('button');
+            button.type = 'button';
+            button.className = 'btn btn-secondary';
+            button.textContent = 'Show more';
+            button.addEventListener('click', showAll);
+            moreWrapper.appendChild(button);
+        }
+    }
+
+    function removeButton() {
+        if (button && button.parentElement) {
+            button.removeEventListener('click', showAll);
+            button.parentElement.removeChild(button);
+        }
+        button = null;
+        if (moreWrapper && moreWrapper.parentElement) {
+            moreWrapper.parentElement.removeChild(moreWrapper);
+        }
+        moreWrapper = null;
+    }
+
+    function apply(mobile) {
+        if (mobile) {
+            hideExtra();
+        } else {
+            showAll();
+        }
+    }
+
+    // initial
+    apply(mq.matches);
+    // respond to viewport changes
+    mq.addEventListener ? mq.addEventListener('change', e => apply(e.matches)) : mq.addListener(e => apply(e.matches));
+})();
