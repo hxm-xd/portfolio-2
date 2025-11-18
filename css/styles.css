@@ -564,6 +564,12 @@ body {
     transition: var(--transition);
 }
 
+.skill-badge i {
+    margin-right: 0.5rem;
+    width: 1rem;
+    text-align: center;
+}
+
 .skill-badge:hover {
     background: rgba(0, 255, 136, 0.1);
     border-color: var(--primary);
