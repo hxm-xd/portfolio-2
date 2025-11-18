@@ -270,7 +270,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         };
 
-        // Append button into the buttons area
+        // Append button into the buttons area (original placement)
         buttonsArea.appendChild(btn);
 
         // Toggle handler
