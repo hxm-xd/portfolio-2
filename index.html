@@ -1,24 +1,558 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Hamood Thariq | Aspiring IT Professional & Tech Innovator</title>
-    <meta name="description" content="Portfolio of Hamood Thariq - Computing undergraduate passionate about IT project management, full-stack development, and building meaningful digital solutions." />
+    <meta
+      name="description"
+      content="Portfolio of Hamood Thariq - Computing undergraduate passionate about IT project management, full-stack development, and building meaningful digital solutions."
+    />
     <meta name="author" content="Hamood Thariq" />
-
-    <meta property="og:title" content="Hamood Thariq | Aspiring IT Professional & Tech Innovator" />
-    <meta property="og:description" content="Portfolio showcasing projects in software development, IoT systems, and leadership in tech communities." />
+    <meta
+      property="og:title"
+      content="Hamood Thariq | Aspiring IT Professional & Tech Innovator"
+    />
+    <meta
+      property="og:description"
+      content="Portfolio showcasing projects in software development, IoT systems, and leadership in tech communities."
+    />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
-
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@Lovable" />
-    <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
   </head>
-
   <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
+    <!-- Navigation -->
+    <nav id="navigation" class="nav">
+      <div class="container nav-container">
+        <button class="logo" onclick="scrollToTop()">HT</button>
+        <div class="nav-links" id="navLinks">
+          <a href="#about" class="nav-link">About</a>
+          <a href="#projects" class="nav-link">Projects</a>
+          <a href="#skills" class="nav-link">Skills</a>
+          <a href="#experience" class="nav-link">Experience</a>
+          <a href="#education" class="nav-link">Education</a>
+          <a href="#contact" class="nav-link">Contact</a>
+        </div>
+        <button
+          class="mobile-menu-btn"
+          id="mobileMenuBtn"
+          onclick="toggleMobileMenu()"
+        >
+          <i class="fas fa-bars" id="menuIcon"></i>
+        </button>
+      </div>
+      <div class="mobile-nav" id="mobileNav">
+        <a href="#about" class="mobile-nav-link" onclick="closeMobileMenu()"
+          >About</a
+        >
+        <a href="#projects" class="mobile-nav-link" onclick="closeMobileMenu()"
+          >Projects</a
+        >
+        <a href="#skills" class="mobile-nav-link" onclick="closeMobileMenu()"
+          >Skills</a
+        >
+        <a
+          href="#experience"
+          class="mobile-nav-link"
+          onclick="closeMobileMenu()"
+          >Experience</a
+        >
+        <a href="#education" class="mobile-nav-link" onclick="closeMobileMenu()"
+          >Education</a
+        >
+        <a href="#contact" class="mobile-nav-link" onclick="closeMobileMenu()"
+          >Contact</a
+        >
+      </div>
+    </nav>
+    <!-- Hero Section -->
+    <section id="hero" class="hero">
+      <div class="hero-grid"></div>
+      <div class="container hero-content">
+        <div class="hero-image-container">
+          <img
+            src="assets/hero-pic.jpg"
+            alt="Hamood Thariq"
+            class="hero-image"
+          />
+        </div>
+        <h1 class="hero-title">Hi, I'm Hamood</h1>
+        <div class="hero-subtitle">
+          <span class="gradient-text">Aspiring IT Professional</span>
+          <span class="separator">|</span>
+          <span class="gradient-text">Future Project Leader</span>
+          <span class="separator">|</span>
+          <span class="gradient-text">Tech Innovator</span>
+        </div>
+        <p class="hero-description">
+          Passionate about building meaningful digital solutions and leading
+          projects that create real impact.
+        </p>
+        <div class="hero-buttons">
+          <a href="#contact" class="btn btn-primary">Contact Me</a>
+          <a href="#" class="btn btn-secondary">Download CV</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+      <div class="container">
+        <h2 class="section-title">About Me</h2>
+        <div class="about-grid">
+          <div class="card">
+            <div class="card-icon">👨‍🎓</div>
+            <h3 class="card-title">Computing Undergraduate</h3>
+            <p class="card-text">
+              Currently pursuing BSc/HND in Computing at the National Institute
+              of Business Management (NIBM), building a strong foundation in
+              software development and IT management.
+            </p>
+          </div>
+          <div class="card">
+            <div class="card-icon">🎯</div>
+            <h3 class="card-title">Career Goals</h3>
+            <p class="card-text">
+              Aspiring to excel in IT project management and full-stack
+              development, with a focus on creating innovative solutions that
+              solve real-world problems and deliver measurable impact.
+            </p>
+          </div>
+          <div class="card">
+            <div class="card-icon">💪</div>
+            <h3 class="card-title">Core Strengths</h3>
+            <ul class="card-list">
+              <li>Effective Communication & Presentation</li>
+              <li>Team Collaboration & Leadership</li>
+              <li>Problem-Solving & Critical Thinking</li>
+              <li>Continuous Learning & Adaptability</li>
+            </ul>
+          </div>
+          <div class="card">
+            <div class="card-icon">🚀</div>
+            <h3 class="card-title">Interests</h3>
+            <ul class="card-list">
+              <li>Software Development & Architecture</li>
+              <li>Mobile Application Development</li>
+              <li>IoT & Smart Systems</li>
+              <li>Robotics & Automation</li>
+            </ul>
+          </div>
+        </div>
+        <div class="quote-card">
+          <div class="quote-icon">"</div>
+          <p class="quote-text">
+            I love turning ideas into well-organized, successful projects — and
+            learning something new every time.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section section-alt">
+      <div class="container">
+        <h2 class="section-title">Featured Projects</h2>
+        <div class="projects-grid">
+          <div
+            class="project-card"
+            style="
+              --gradient: linear-gradient(
+                135deg,
+                hsl(150 100% 50%),
+                hsl(180 100% 50%)
+              );
+            "
+          >
+            <div class="project-header">
+              <h3 class="project-title">
+                Billing & Inventory Management System
+              </h3>
+              <div class="project-tags">
+                <span class="tag">Java</span>
+                <span class="tag">Spring Boot</span>
+                <span class="tag">MySQL</span>
+                <span class="tag">REST API</span>
+              </div>
+            </div>
+            <p class="project-description">
+              Comprehensive business management solution featuring real-time
+              inventory tracking, automated billing, and detailed analytics
+              dashboard. Built with modern architecture and best practices.
+            </p>
+            <div class="project-buttons">
+              <a href="#" class="btn-link"
+                >View Demo <i class="fas fa-external-link-alt"></i
+              ></a>
+              <a href="#" class="btn-link"
+                >View GitHub <i class="fab fa-github"></i
+              ></a>
+            </div>
+          </div>
+
+          <div
+            class="project-card"
+            style="
+              --gradient: linear-gradient(
+                135deg,
+                hsl(270 70% 65%),
+                hsl(300 70% 65%)
+              );
+            "
+          >
+            <div class="project-header">
+              <h3 class="project-title">
+                Landslide Detection & Monitoring System
+              </h3>
+              <div class="project-tags">
+                <span class="tag">IoT</span>
+                <span class="tag">Python</span>
+                <span class="tag">React</span>
+                <span class="tag">Analytics</span>
+              </div>
+            </div>
+            <p class="project-description">
+              IoT-based early warning system that monitors soil moisture,
+              vibration, and rainfall data to predict landslides. Features
+              real-time alerts and comprehensive analytics dashboard.
+            </p>
+            <div class="project-buttons">
+              <a href="#" class="btn-link"
+                >View Demo <i class="fas fa-external-link-alt"></i
+              ></a>
+              <a href="#" class="btn-link"
+                >View GitHub <i class="fab fa-github"></i
+              ></a>
+            </div>
+          </div>
+
+          <div
+            class="project-card"
+            style="
+              --gradient: linear-gradient(
+                135deg,
+                hsl(200 100% 50%),
+                hsl(220 100% 60%)
+              );
+            "
+          >
+            <div class="project-header">
+              <h3 class="project-title">Portfolio Website</h3>
+              <div class="project-tags">
+                <span class="tag">HTML</span>
+                <span class="tag">CSS</span>
+                <span class="tag">JavaScript</span>
+              </div>
+            </div>
+            <p class="project-description">
+              Modern, responsive portfolio website showcasing projects, skills,
+              and experience. Features smooth animations, dark theme, and
+              mobile-first design.
+            </p>
+            <div class="project-buttons">
+              <a href="#" class="btn-link"
+                >View Demo <i class="fas fa-external-link-alt"></i
+              ></a>
+              <a href="#" class="btn-link"
+                >View GitHub <i class="fab fa-github"></i
+              ></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="section">
+      <div class="container">
+        <h2 class="section-title">Technical Skills</h2>
+        <div class="skills-grid">
+          <div class="card">
+            <h3 class="card-title">
+              <i class="fas fa-code"></i> Programming Languages
+            </h3>
+            <div class="skills-list">
+              <span class="skill-badge">Java</span>
+              <span class="skill-badge">JavaScript</span>
+              <span class="skill-badge">Python</span>
+              <span class="skill-badge">TypeScript</span>
+            </div>
+          </div>
+          <div class="card">
+            <h3 class="card-title">
+              <i class="fas fa-layer-group"></i> Frameworks & Libraries
+            </h3>
+            <div class="skills-list">
+              <span class="skill-badge">Spring Boot</span>
+              <span class="skill-badge">React</span>
+              <span class="skill-badge">Flutter</span>
+              <span class="skill-badge">Node.js</span>
+            </div>
+          </div>
+          <div class="card">
+            <h3 class="card-title">
+              <i class="fas fa-database"></i> Database & Backend
+            </h3>
+            <div class="skills-list">
+              <span class="skill-badge">MySQL</span>
+              <span class="skill-badge">PostgreSQL</span>
+              <span class="skill-badge">REST APIs</span>
+              <span class="skill-badge">GraphQL</span>
+            </div>
+          </div>
+          <div class="card">
+            <h3 class="card-title">
+              <i class="fab fa-git-alt"></i> Tools & Platforms
+            </h3>
+            <div class="skills-list">
+              <span class="skill-badge">Git & GitHub</span>
+              <span class="skill-badge">Trello</span>
+              <span class="skill-badge">Notion</span>
+              <span class="skill-badge">MS Office</span>
+            </div>
+          </div>
+          <div class="card">
+            <h3 class="card-title">
+              <i class="fas fa-lightbulb"></i> Areas of Interest
+            </h3>
+            <div class="skills-list">
+              <span class="skill-badge">AI & ML</span>
+              <span class="skill-badge">IoT</span>
+              <span class="skill-badge">Robotics</span>
+              <span class="skill-badge">Automation</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="section section-alt">
+      <div class="container">
+        <h2 class="section-title">Experience & Leadership</h2>
+        <div class="experience-grid">
+          <div class="card">
+            <div class="experience-header">
+              <div>
+                <h3 class="card-title">Director of Professional Development</h3>
+                <p class="organization">Rotaract Club of Kandy Hill Capital</p>
+              </div>
+              <span class="badge">2023 - Present</span>
+            </div>
+            <ul class="experience-list">
+              <li>
+                Led professional development initiatives for 50+ club members
+              </li>
+              <li>
+                Coordinated workshops and training sessions on leadership and
+                career development
+              </li>
+              <li>Managed event logistics and stakeholder communications</li>
+              <li>
+                Facilitated community service projects with measurable impact
+              </li>
+            </ul>
+          </div>
+          <div class="card">
+            <div class="experience-header">
+              <div>
+                <h3 class="card-title">Co-Lead</h3>
+                <p class="organization">STEM UP Foundation</p>
+              </div>
+              <span class="badge">2022 - Present</span>
+            </div>
+            <ul class="experience-list">
+              <li>
+                Co-led STEM education initiatives for underprivileged students
+              </li>
+              <li>Organized robotics and coding workshops for youth</li>
+              <li>Coordinated volunteer teams and project timelines</li>
+              <li>Developed partnerships with educational institutions</li>
+            </ul>
+          </div>
+          <div class="card">
+            <div class="experience-header">
+              <div>
+                <h3 class="card-title">Active Member</h3>
+                <p class="organization">NIBM IT Society</p>
+              </div>
+              <span class="badge">2022 - Present</span>
+            </div>
+            <ul class="experience-list">
+              <li>Participated in tech workshops and hackathons</li>
+              <li>Collaborated on team projects with fellow students</li>
+              <li>Contributed to knowledge-sharing sessions</li>
+              <li>Engaged in peer mentoring and skill development</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" class="section">
+      <div class="container">
+        <h2 class="section-title">Education & Certifications</h2>
+        <div class="education-section">
+          <h3 class="subsection-title">Education</h3>
+          <div class="card">
+            <div class="education-header">
+              <div>
+                <h4 class="card-title">BSc/HND in Computing</h4>
+                <p class="organization">
+                  National Institute of Business Management (NIBM)
+                </p>
+              </div>
+              <span class="badge badge-primary">Present</span>
+            </div>
+            <p class="card-text">
+              Comprehensive computing program covering software development,
+              database management, networking, and IT project management
+              principles.
+            </p>
+          </div>
+        </div>
+        <div class="education-section">
+          <h3 class="subsection-title">Certifications</h3>
+          <div class="certifications-grid">
+            <div class="cert-card">
+              <div class="cert-icon"><i class="fas fa-certificate"></i></div>
+              <h4 class="cert-title">
+                Project Management Reinvented for Non-Project Managers
+              </h4>
+              <p class="cert-provider">LinkedIn Learning</p>
+            </div>
+            <div class="cert-card">
+              <div class="cert-icon"><i class="fas fa-certificate"></i></div>
+              <h4 class="cert-title">Software Testing & QA</h4>
+              <p class="cert-provider">LinkedIn Learning</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section section-alt">
+      <div class="container">
+        <h2 class="section-title">Get In Touch</h2>
+        <p class="section-subtitle">
+          Let's build something meaningful together.
+        </p>
+        <div class="contact-grid">
+          <div class="contact-info">
+            <div class="contact-item">
+              <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+              <div>
+                <h3 class="contact-label">Email</h3>
+                <a href="mailto:HamoodThariq@outlook.com" class="contact-value"
+                  >HamoodThariq@outlook.com</a
+                >
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon"><i class="fas fa-phone"></i></div>
+              <div>
+                <h3 class="contact-label">Phone</h3>
+                <a href="tel:+94786762734" class="contact-value"
+                  >+94 78 676 2734</a
+                >
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon"><i class="fab fa-linkedin"></i></div>
+              <div>
+                <h3 class="contact-label">LinkedIn</h3>
+                <a
+                  href="https://linkedin.com"
+                  target="_blank"
+                  class="contact-value"
+                  >View Profile</a
+                >
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon"><i class="fab fa-github"></i></div>
+              <div>
+                <h3 class="contact-label">GitHub</h3>
+                <a
+                  href="https://github.com"
+                  target="_blank"
+                  class="contact-value"
+                  >View Profile</a
+                >
+              </div>
+            </div>
+          </div>
+          <form class="contact-form" id="contactForm">
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input type="text" id="name" name="name" required />
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" required />
+            </div>
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea
+                id="message"
+                name="message"
+                rows="6"
+                required
+              ></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary btn-full">
+              Send Message <i class="fas fa-paper-plane"></i>
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <p class="footer-text">
+            © <span id="currentYear"></span> Hamood Thariq. All rights reserved.
+          </p>
+          <div class="social-links">
+            <a
+              href="https://github.com"
+              target="_blank"
+              class="social-link"
+              aria-label="GitHub"
+            >
+              <i class="fab fa-github"></i>
+            </a>
+            <a
+              href="https://linkedin.com"
+              target="_blank"
+              class="social-link"
+              aria-label="LinkedIn"
+            >
+              <i class="fab fa-linkedin"></i>
+            </a>
+            <a
+              href="mailto:HamoodThariq@outlook.com"
+              class="social-link"
+              aria-label="Email"
+            >
+              <i class="fas fa-envelope"></i>
+            </a>
+          </div>
+          <p class="footer-text">📍 Sri Lanka</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast"></div>
+    <script src="script.js"></script>
   </body>
 </html>
