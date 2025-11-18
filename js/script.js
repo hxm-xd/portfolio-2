@@ -296,3 +296,17 @@ document.addEventListener('DOMContentLoaded', () => {
     };
     mq.addEventListener ? mq.addEventListener('change', onChange) : mq.addListener(onChange);
 });
+
+// Rotate hero subtitle phrases to make the hero more dynamic
+document.addEventListener('DOMContentLoaded', () => {
+    const items = Array.from(document.querySelectorAll('.hero-subtitle .subtitle-item'));
+    if (!items.length) return;
+    let idx = items.findIndex(i => i.classList.contains('active'));
+    if (idx < 0) idx = 0;
+
+    setInterval(() => {
+        items[idx].classList.remove('active');
+        idx = (idx + 1) % items.length;
+        items[idx].classList.add('active');
+    }, 2600);
+});
