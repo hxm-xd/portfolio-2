@@ -237,3 +237,62 @@ window.addEventListener('load', () => {
         if (preloader && preloader.parentElement) preloader.parentElement.removeChild(preloader);
     }, 600);
 });
+
+// Add a toggle button to each project to reveal/hide its description
+document.addEventListener('DOMContentLoaded', () => {
+    const grid = document.querySelector('.projects-grid');
+    if (!grid) return;
+    const cards = Array.from(grid.querySelectorAll('.project-card'));
+    const mq = window.matchMedia('(max-width: 767px)');
+
+    cards.forEach(card => {
+        const desc = card.querySelector('.project-description');
+        const buttonsArea = card.querySelector('.project-buttons') || card;
+        if (!desc) return;
+
+        // Create toggle button
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'project-toggle-btn';
+        btn.setAttribute('aria-expanded', 'true');
+        btn.textContent = 'Hide description';
+
+        // Initial collapsed state on mobile
+        const setCollapsed = (collapsed) => {
+            if (collapsed) {
+                desc.classList.add('collapsed');
+                btn.setAttribute('aria-expanded', 'false');
+                btn.textContent = 'Show description';
+            } else {
+                desc.classList.remove('collapsed');
+                btn.setAttribute('aria-expanded', 'true');
+                btn.textContent = 'Hide description';
+            }
+        };
+
+        // Append button into the buttons area
+        buttonsArea.appendChild(btn);
+
+        // Toggle handler
+        btn.addEventListener('click', () => {
+            const isCollapsed = desc.classList.contains('collapsed');
+            setCollapsed(!isCollapsed);
+        });
+
+        // Set initial: collapsed by default
+        setCollapsed(true);
+    });
+
+    // Update when viewport changes
+    const onChange = () => {
+        // keep descriptions collapsed by default on viewport changes
+        const cardsNow = Array.from(grid.querySelectorAll('.project-card'));
+        cardsNow.forEach(card => {
+            const desc = card.querySelector('.project-description');
+            const btn = card.querySelector('.project-toggle-btn');
+            if (!desc || !btn) return;
+            setTimeout(() => { desc.classList.add('collapsed'); btn.setAttribute('aria-expanded', 'false'); btn.textContent = 'Show description'; }, 0);
+        });
+    };
+    mq.addEventListener ? mq.addEventListener('change', onChange) : mq.addListener(onChange);
+});
