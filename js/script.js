@@ -227,3 +227,13 @@ window.addEventListener('scroll', updateActiveNavLink);
     // respond to viewport changes
     mq.addEventListener ? mq.addEventListener('change', e => apply(e.matches)) : mq.addListener(e => apply(e.matches));
 })();
+
+// Preloader: fade out on window load
+window.addEventListener('load', () => {
+    const preloader = document.getElementById('preloader');
+    if (!preloader) return;
+    preloader.classList.add('hidden');
+    setTimeout(() => {
+        if (preloader && preloader.parentElement) preloader.parentElement.removeChild(preloader);
+    }, 600);
+});
