@@ -1,0 +1,45 @@
+[{
+  "_id": {
+    "$oid": "6907bad896f3d483b4bdcef2"
+  },
+  "category": "Front-end development",
+  "level": 70,
+  "tools": [
+    "HTML",
+    "CSS",
+    "JavaScript",
+    "React",
+    "Java Swing",
+    "Tailwind CSS",
+    "FlutterFlow"
+  ]
+},
+{
+  "_id": {
+    "$oid": "6907bad896f3d483b4bdcef3"
+  },
+  "category": "Back-end development",
+  "level": 80,
+  "tools": [
+    "Spring Boot",
+    "Node.js & Express.js",
+    "Spring Boot(Java)",
+    "Oracle Databases",
+    ".NET",
+    "Firebase",
+    "CRUD APIs"
+  ]
+},
+{
+  "_id": {
+    "$oid": "6907bad896f3d483b4bdcef4"
+  },
+  "category": "Embedded Systems and IoT",
+  "level": 90,
+  "tools": [
+    "Arduino",
+    "ESP",
+    "PCB & Circuit Design",
+    "Blynk"
+  ]
+}]

@@ -148,47 +148,4 @@ function updateActiveNavLink() {
 
 window.addEventListener('scroll', updateActiveNavLink);
 
-// Parallax effect for hero section
-window.addEventListener('scroll', () => {
-    const hero = document.querySelector('.hero');
-    if (hero) {
-        const scrolled = window.scrollY;
-        hero.style.transform = `translateY(${scrolled * 0.5}px)`;
-    }
-});
-
-// Add hover effect for skill badges
-document.querySelectorAll('.skill-badge').forEach(badge => {
-    badge.addEventListener('mouseenter', function() {
-        this.style.transform = 'translateY(-2px) scale(1.05)';
-    });
-    
-    badge.addEventListener('mouseleave', function() {
-        this.style.transform = 'translateY(0) scale(1)';
-    });
-});
-
-// Typing effect for hero subtitle (optional enhancement)
-function typeWriter(element, text, speed = 100) {
-    let i = 0;
-    element.innerHTML = '';
-    
-    function type() {
-        if (i < text.length) {
-            element.innerHTML += text.charAt(i);
-            i++;
-            setTimeout(type, speed);
-        }
-    }
-    
-    type();
-}
-
-// Preloader (optional)
-window.addEventListener('load', () => {
-    document.body.classList.add('loaded');
-});
-
-// Console message
-console.log('%c👋 Hi there! Thanks for checking out my portfolio!', 'color: #00ff88; font-size: 16px; font-weight: bold;');
-console.log('%cInterested in collaborating? Let\'s connect!', 'color: #a855f7; font-size: 14px;');
+// Removed dynamic JSON rendering. Using hardcoded content in index.html.

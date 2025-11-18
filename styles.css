@@ -409,7 +409,7 @@ body {
 .about-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 2rem;
+    gap: 1rem;
     margin-bottom: 3rem;
 }
 
@@ -436,11 +436,19 @@ body {
     color: var(--foreground);
 }
 
-/* Projects Grid */
+/* Projects Layout: Columns instead of Grid */
 .projects-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 2rem;
+    column-gap: 2rem;
+    column-count: 1;
+}
+
+/* Project cards shouldn't split across columns */
+.project-card {
+    break-inside: avoid;
+    -webkit-column-break-inside: avoid;
+    -moz-column-break-inside: avoid;
+    page-break-inside: avoid;
+    margin-bottom: 2rem;
 }
 
 .project-card {
@@ -826,6 +834,8 @@ body {
     .hero-title {
         font-size: 3.5rem;
     }
+    /* 2 columns on medium screens */
+    .projects-grid { column-count: 2; }
     
     .footer-content {
         flex-direction: row;
@@ -849,4 +859,9 @@ body {
         left: 1rem;
         right: 1rem;
     }
+}
+
+/* 3 columns on large screens */
+@media (min-width: 1024px) {
+    .projects-grid { column-count: 3; }
 }

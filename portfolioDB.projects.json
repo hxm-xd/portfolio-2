@@ -1,0 +1,147 @@
+[{
+  "_id": {
+    "$oid": "6907bb2996f3d483b4bdcefb"
+  },
+  "title": "Warehouse Management Robot",
+  "timeframe": "Jan 2025 - Apr 2025",
+  "description": "Developed a low-cost warehouse inventory robot using Arduino Mega to assist with inventory tracking. Controlled via a custom mobile app, it features dual ultrasonic sensors for obstacle detection and an MPU9250 IMU for orientation tracking. Built with a modular design for future upgrades like SLAM and autonomous navigation, combining robotics and IoT concepts for practical warehouse automation.",
+  "link": "https://www.linkedin.com/in/hamood-thariq-979409289/details/projects/",
+  "toolList": [
+    "Arduino",
+    "TinkerCad",
+    "Processing"
+  ]
+},
+{
+  "_id": {
+    "$oid": "6907bb2996f3d483b4bdcef9"
+  },
+  "title": "AI and Academic Autonomy Study",
+  "timeframe": "May 2025 - Jun 2025",
+  "description": "Conducted a statistical study exploring whether undergraduates are losing independent thinking skills due to frequent AI use. Using surveys and applying descriptive, correlation, and regression analysis on responses from 30 NIBM undergraduates, we examined the relationship between AI usage, productivity, and academic confidence. Findings showed AI tools are widely used for coding and research, with a moderate trend suggesting frequent AI users may feel slightly less confident working independently, highlighting the need to balance AI support with critical thinking development in education.",
+  "link": "https://www.linkedin.com/in/hamood-thariq-979409289/details/projects/",
+  "toolList": [
+    "Google Sheets",
+    "Microsoft Excel",
+    "Jamovi",
+    "Firebase"
+  ]
+},
+{
+  "_id": {
+    "$oid": "6907bb2996f3d483b4bdcefd"
+  },
+  "title": "EduSync - Academic Management System",
+  "timeframe": "Jul 2024 - Sep 2024",
+  "description": "Developed a desktop application to help students manage attendance, GPA tracking, budget management, and task scheduling. Built with Java Swing, MySQL, and JDBC, implementing user login, CRUD operations, and personalized dashboards for effective academic task management.",
+  "link": "https://www.linkedin.com/in/hamood-thariq-979409289/details/projects/",
+  "toolList": [
+    "Java",
+    "Swing",
+    "MySQL",
+    "JDBC"
+  ]
+},
+{
+  "_id": {
+    "$oid": "6907bb2996f3d483b4bdcefe"
+  },
+  "title": "Smart Garbage Management System",
+  "timeframe": "Feb 2024 - Apr 2024",
+  "description": "Developed a low-cost, sensor-based system for real-time waste bin fill-level monitoring to optimize urban waste collection. Automatically alerts authorities when thresholds are reached, reducing overflow and unnecessary trips, with a manual override for urgent requests. Designed using TinkerCad circuit simulation and logic circuits as part of broader IoT and smart city sustainability initiatives.",
+  "link": "https://www.linkedin.com/in/hamood-thariq-979409289/details/projects/",
+  "toolList": [
+    "TinkerCad",
+    "Integrated Controllers"
+  ]
+},
+{
+  "_id": {
+    "$oid": "6907bb2996f3d483b4bdcefa"
+  },
+  "title": "Vegetable & Fruit E-commerce Web Application",
+  "timeframe": "Apr 2025 - May 2025",
+  "description": "Developed a clean, user-friendly e-commerce platform for a vegetable and fruit store using HTML, CSS, JavaScript, Java (Spring Boot), and MVC architecture. Customers can browse categories, view product details, add items to cart, and place orders seamlessly. Focused on responsive design and intuitive navigation to enhance the online shopping experience, with a structured backend ensuring reliable product and order management.",
+  "link": "https://www.linkedin.com/in/hamood-thariq-979409289/details/projects/",
+  "toolList": [
+    "SpringBoot",
+    "Spring MVC",
+    "Express.js",
+    "HTML",
+    "CSS",
+    "JavaScript"
+  ]
+},
+{
+  "_id": {
+    "$oid": "6907bb2996f3d483b4bdcefc"
+  },
+  "title": "Quick Cart",
+  "timeframe": "Jul 2024 - Nov 2024",
+  "description": "Developed QuickCart, an all-in-one mobile app for purchasing goods and accessing services like transport, food delivery, and on-demand providers. Designed to simplify daily life by unifying diverse needs under a single platform. Built using Flutter, Firebase Authentication, Firestore, and Firebase Storage as part of the Diploma in Software Engineering final project at NIBM.",
+  "link": "https://www.linkedin.com/in/hamood-thariq-979409289/details/projects/",
+  "toolList": [
+    "FlutterFlow (Flutter)",
+    "Firebase"
+  ]
+},
+{
+  "_id": {
+    "$oid": "6907bb2996f3d483b4bdcef8"
+  },
+  "title": "Power BI Retail Sales Dashboard",
+  "timeframe": "May 2025 - Jun 2025",
+  "description": "Built an interactive dashboard in Power BI analyzing 51,000+ sales records across 25 attributes, focusing on sales trends, regional performance, product demand, and shipping efficiency. Managed data cleaning, transformation, and modeling to ensure accuracy, and used clear visual storytelling to present insights for better decision-making. This project strengthened my practical BI reporting and data analysis skills while delivering accessible, actionable business insights.",
+  "link": "https://www.linkedin.com/in/hamood-thariq-979409289/details/projects/",
+  "toolList": [
+    "PowerBI",
+    "Kaggle"
+  ]
+},
+{
+  "_id": {
+    "$oid": "6907bb2996f3d483b4bdcef7"
+  },
+  "title": "Landslide Detection and Monitoring System",
+  "timeframe": "Jul 2025 - Present",
+  "description": "Developing a real-time landslide detection system using IoT, robotics, and AI to enhance disaster preparedness in Sri Lanka. The system monitors soil moisture, ground vibrations, and rainfall, sending instant mobile alerts to residents and authorities when risk thresholds are reached. Using AI and machine learning to improve predictions, the project aligns with NBRO standards to ensure effective deployment. Aims to provide a scalable, cost-effective solution to reduce landslide risks.",
+  "link": "https://www.linkedin.com/in/hamood-thariq-979409289/details/projects/",
+  "toolList": [
+    "ESP32",
+    "Firebase",
+    "Arduino IDE",
+    "Blynk"
+  ]
+},
+{
+  "_id": {
+    "$oid": "690cfee82bfe613203772fc7"
+  },
+  "title": "Billing and Inventory System",
+  "timeframe": "Sep 2025 - Present",
+  "description": "Developed a comprehensive billing and inventory management system to streamline product tracking, sales processing, and report generation. The system allows real-time stock updates, automated billing, and user-friendly dashboards for administrators and staff. Designed as part of the PDSA Project to integrate database management and efficient business process automation.",
+  "link": "https://www.linkedin.com/in/hamood-thariq-979409289/details/projects/",
+  "toolList": [
+    "Java",
+    "SpringBoot",
+    "React.js",
+    "MySQL",
+    "Bootstrap"
+  ]
+},
+{
+  "_id": {
+    "$oid": "690d00342bfe613203772fd3"
+  },
+  "title": "Rotaract Club of Kandy Hill Capital (KHCP) Website",
+  "timeframe": "Nov 2025 - Present",
+  "description": "Designing and building a modern, responsive website for the Rotaract Club of Kandy Hill Capital. Features an animated hero with rotating background imagery, a sticky navbar with mobile hamburger menu, sections for About, Projects, and Contact, interactive project cards, and a contact form with real‑time validation and toast-style notifications. Includes smooth scrolling, scroll-to-top control, accessibility-focused focus states, and IntersectionObserver-powered reveal animations for performant UX.",
+  "link": "https://rackhcp.vercel.app",
+  "toolList": [
+    "HTML5",
+    "CSS3",
+    "JavaScript (Vanilla)",
+    "Font Awesome",
+    "Google Fonts (Inter)"
+  ]
+}]
