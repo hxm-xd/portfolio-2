@@ -182,26 +182,20 @@ body {
     overflow: hidden;
 }
 
-.hero-grid {
+#hero-canvas {
     position: absolute;
-    inset: 0;
-    background-image: 
-        linear-gradient(var(--grid-color) 1px, transparent 1px),
-        linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
-    background-size: 50px 50px;
-    opacity: 0.3;
-    animation: gridMove 20s linear infinite;
-}
-
-@keyframes gridMove {
-    0% { transform: translate(0, 0); }
-    100% { transform: translate(50px, 50px); }
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
 }
 
 .hero-content {
     position: relative;
     text-align: center;
     animation: fadeInUp 1s ease-out;
+    z-index: 2;
 }
 
 /* Hero decorative floating icons */
