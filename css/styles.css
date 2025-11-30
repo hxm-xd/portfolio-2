@@ -1172,6 +1172,7 @@ body {
     filter: drop-shadow(0 0 20px rgba(0, 255, 136, 0.3));
     animation: float 6s ease-in-out infinite;
     transition: filter 0.3s ease;
+    border-radius: 15px;
 }
 
 .venture-card:hover .altair-logo {
