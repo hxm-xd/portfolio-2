@@ -140,43 +140,48 @@
     </nav>
     <!-- Hero Section -->
     <section id="hero" class="hero">
-      <canvas id="hero-canvas"></canvas>
-      <div class="container hero-content">
-        <div class="hero-image-container">
-          <img
-            src="assets/hero-pic.jpg"
-            alt="Hamood Thariq"
-            class="hero-image"
-          />
-        </div>
-        <h1 class="hero-title">Hi, I'm Hamood</h1>
-        <div class="hero-subtitle">
-          <span class="gradient-text subtitle-item active">Embedded & IoT</span>
-          <span class="separator">|</span>
-          <span class="gradient-text subtitle-item">Back-end/Full-Stack</span>
-          <span class="separator">|</span>
-          <span class="gradient-text subtitle-item">Project Management</span>
-        </div>
+      <div class="anime-background"></div>
+      <div class="container hero-container centered-hero">
+        <div class="hero-text">
+          <div class="hero-badge-pill">
+            <span class="pulse-dot"></span> Available for new opportunities
+          </div>
+          <h1 class="hero-title">
+            Building <span class="text-gradient">Intelligent</span><br />
+            Digital Solutions
+          </h1>
+          <p class="hero-description">
+            I'm <strong>Hamood Thariq</strong>, a Full-Stack Engineer & IoT
+            Specialist transforming complex problems into robust, scalable
+            systems.
+          </p>
 
-        <!-- Decorative floating icons around hero image -->
-        <div class="hero-decor" aria-hidden="true">
-          <i class="fab fa-java float-icon icon-1"></i>
-          <i class="fab fa-js float-icon icon-2"></i>
-          <i class="fas fa-microchip float-icon icon-3"></i>
-          <i class="fas fa-database float-icon icon-4"></i>
-        </div>
-        <p class="hero-description">
-          Passionate about building digital solutions and leading projects that
-          create real impact.
-        </p>
-        <div class="hero-buttons">
-          <a href="#contact" class="btn btn-primary">Contact Me</a>
-          <a
-            href="files/hamood_thariq_cv.pdf"
-            class="btn btn-secondary"
-            download
-            >Download CV</a
-          >
+          <div class="hero-buttons">
+            <a href="#contact" class="btn btn-primary glow-effect">
+              Let's Talk
+              <i class="fas fa-arrow-right" style="margin-left: 8px"></i>
+            </a>
+            <a
+              href="files/hamood_thariq_cv.pdf"
+              class="btn btn-secondary"
+              download
+            >
+              Download CV
+              <i class="fas fa-download" style="margin-left: 8px"></i>
+            </a>
+          </div>
+
+          <div class="hero-tech-stack">
+            <span class="stack-label">Tech Stack:</span>
+            <div class="tech-icons">
+              <i class="fab fa-js" title="JavaScript"></i>
+              <i class="fab fa-react" title="React"></i>
+              <i class="fab fa-node" title="Node.js"></i>
+              <i class="fab fa-python" title="Python"></i>
+              <i class="fas fa-database" title="Database"></i>
+              <i class="fas fa-microchip" title="IoT"></i>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -185,41 +190,53 @@
     <section id="about" class="section">
       <div class="container">
         <h2 class="section-title">About Me</h2>
-        <div class="about-grid">
-          <div class="card">
-            <h3 class="card-title">Current role</h3>
-            <p class="card-text">
-              Currently pursuing my HND in Software Engineering at the National
-              Institute of Business Management (NIBM), building a strong
-              foundation in software development and IT management.
-            </p>
+        <div class="about-container">
+          <div class="about-visual">
+            <div class="hero-image-wrapper about-image-wrapper">
+              <div class="image-glow"></div>
+              <img
+                src="assets/hero-pic.jpg"
+                alt="Hamood Thariq"
+                class="hero-image"
+              />
+            </div>
           </div>
-          <div class="card">
-            <h3 class="card-title">Career Goals</h3>
-            <p class="card-text">
-              Aspiring to excel in Back-end development, with a focus on
-              creating innovative solutions that solve real-world problems and
-              deliver measurable impact.
-            </p>
-          </div>
-          <div class="card">
-            <h3 class="card-title">Core Strengths</h3>
-            <ul class="card-list">
-              <li>Effective Communication & Presentation</li>
-              <li>Team Collaboration & Leadership</li>
-              <li>Problem-Solving & Critical Thinking</li>
-              <li>Continuous Learning & Adaptability</li>
-            </ul>
-          </div>
-          <div class="card">
-            <h3 class="card-title">Interests</h3>
-            <ul class="card-list">
-              <li>Software Development & Architecture</li>
-              <li>Mobile Application Development</li>
-              <li>IoT & Smart Systems</li>
-              <li>Robotics & Automation</li>
-              <li>Project Management</li>
-            </ul>
+          <div class="about-grid">
+            <div class="card">
+              <h3 class="card-title">Current role</h3>
+              <p class="card-text">
+                Currently pursuing my HND in Software Engineering at the
+                National Institute of Business Management (NIBM), building a
+                strong foundation in software development and IT management.
+              </p>
+            </div>
+            <div class="card">
+              <h3 class="card-title">Career Goals</h3>
+              <p class="card-text">
+                Aspiring to excel in Back-end development, with a focus on
+                creating innovative solutions that solve real-world problems and
+                deliver measurable impact.
+              </p>
+            </div>
+            <div class="card">
+              <h3 class="card-title">Core Strengths</h3>
+              <ul class="card-list">
+                <li>Effective Communication & Presentation</li>
+                <li>Team Collaboration & Leadership</li>
+                <li>Problem-Solving & Critical Thinking</li>
+                <li>Continuous Learning & Adaptability</li>
+              </ul>
+            </div>
+            <div class="card">
+              <h3 class="card-title">Interests</h3>
+              <ul class="card-list">
+                <li>Software Development & Architecture</li>
+                <li>Mobile Application Development</li>
+                <li>IoT & Smart Systems</li>
+                <li>Robotics & Automation</li>
+                <li>Project Management</li>
+              </ul>
+            </div>
           </div>
         </div>
         <div class="quote-card">
@@ -1079,7 +1096,8 @@
 
     <!-- Toast Notification -->
     <div id="toast" class="toast"></div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
     <script src="js/script.js"></script>
-    <script src="js/particles.js"></script>
+    <script src="js/hero-animation.js"></script>
   </body>
 </html>
