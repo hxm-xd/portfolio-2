@@ -1094,6 +1094,10 @@ body {
 }
 
 /* About Section Redesign */
+#about {
+    overflow: visible; /* Required for sticky positioning to work */
+}
+
 .about-container {
     display: flex;
     gap: 4rem;
