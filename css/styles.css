@@ -225,7 +225,110 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    animation: fadeInUp 0.8s ease-out;
+}
+
+/* Glitch Fade-In Animation for Hero Content */
+.glitch-in {
+    animation: glitchFadeIn 1.2s steps(1, end) forwards;
+}
+
+.glitch-in > * {
+    animation: glitchChildFade 1.2s steps(1, end) forwards;
+}
+
+@keyframes glitchFadeIn {
+    0%, 5% {
+        opacity: 0;
+        clip-path: inset(0 100% 0 0);
+    }
+    6% {
+        opacity: 1;
+        clip-path: inset(40% 60% 50% 0);
+        filter: hue-rotate(90deg);
+    }
+    8% {
+        clip-path: inset(0 80% 80% 0);
+        filter: hue-rotate(-90deg);
+    }
+    10% {
+        clip-path: inset(70% 0 10% 50%);
+        filter: none;
+    }
+    12% {
+        clip-path: inset(20% 40% 60% 20%);
+        filter: hue-rotate(45deg);
+    }
+    15% {
+        clip-path: inset(50% 20% 30% 40%);
+        filter: none;
+    }
+    18% {
+        clip-path: inset(10% 50% 70% 10%);
+        filter: hue-rotate(-45deg);
+    }
+    22% {
+        clip-path: inset(60% 10% 20% 30%);
+        filter: none;
+    }
+    26% {
+        clip-path: inset(30% 30% 40% 20%);
+    }
+    30% {
+        clip-path: inset(0 50% 50% 0);
+    }
+    35% {
+        clip-path: inset(50% 0 0 50%);
+    }
+    40% {
+        clip-path: inset(20% 20% 60% 0);
+    }
+    45% {
+        clip-path: inset(60% 0 20% 20%);
+    }
+    50% {
+        clip-path: inset(10% 30% 30% 10%);
+    }
+    55% {
+        clip-path: inset(40% 10% 10% 40%);
+    }
+    60% {
+        clip-path: inset(0 20% 40% 0);
+    }
+    65% {
+        clip-path: inset(30% 0 0 30%);
+    }
+    70% {
+        clip-path: inset(10% 10% 20% 10%);
+    }
+    75% {
+        clip-path: inset(5% 5% 10% 5%);
+    }
+    80% {
+        clip-path: inset(2% 2% 5% 2%);
+    }
+    85% {
+        clip-path: inset(0 0 2% 0);
+    }
+    90%, 100% {
+        opacity: 1;
+        clip-path: inset(0 0 0 0);
+        filter: none;
+    }
+}
+
+@keyframes glitchChildFade {
+    0%, 30% {
+        text-shadow: 2px 0 var(--primary), -2px 0 var(--secondary);
+    }
+    31%, 60% {
+        text-shadow: -1px 0 var(--primary), 1px 0 var(--secondary);
+    }
+    61%, 80% {
+        text-shadow: 1px 0 var(--primary), -1px 0 var(--secondary);
+    }
+    81%, 100% {
+        text-shadow: none;
+    }
 }
 
 /* Hero Badge */
@@ -283,6 +386,8 @@ body {
         background-position: 200% center;
     }
 }
+
+
 
 .hero-description {
     font-size: 1.35rem;
