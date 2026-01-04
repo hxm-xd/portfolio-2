@@ -13,16 +13,18 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Stars background
     const stars = [];
-    const numStars = 150;
+    const numStars = 200;
 
-    // Planets - simple wireframe style with slower, more elegant speeds
+    // Realistic Planets
     const planets = [
-        { orbitRadius: 80, size: 3, speed: 0.0012, angle: Math.random() * Math.PI * 2 },
-        { orbitRadius: 120, size: 4, speed: 0.0009, angle: Math.random() * Math.PI * 2 },
-        { orbitRadius: 170, size: 5, speed: 0.0006, angle: Math.random() * Math.PI * 2 },
-        { orbitRadius: 230, size: 4, speed: 0.00045, angle: Math.random() * Math.PI * 2 },
-        { orbitRadius: 300, size: 8, speed: 0.0003, angle: Math.random() * Math.PI * 2, hasRing: true },
-        { orbitRadius: 380, size: 6, speed: 0.00022, angle: Math.random() * Math.PI * 2 },
+        { name: 'Mercury', orbitRadius: 80, size: 2.5, speed: 0.0015, angle: Math.random() * Math.PI * 2, color: '#A5A5A5' },
+        { name: 'Venus', orbitRadius: 120, size: 4.5, speed: 0.0011, angle: Math.random() * Math.PI * 2, color: '#E3BB76' },
+        { name: 'Earth', orbitRadius: 170, size: 5, speed: 0.0008, angle: Math.random() * Math.PI * 2, color: '#2271B3' },
+        { name: 'Mars', orbitRadius: 220, size: 3.5, speed: 0.0006, angle: Math.random() * Math.PI * 2, color: '#E27B58' },
+        { name: 'Jupiter', orbitRadius: 320, size: 12, speed: 0.0004, angle: Math.random() * Math.PI * 2, color: '#D39C7E', hasStripes: true },
+        { name: 'Saturn', orbitRadius: 420, size: 10, speed: 0.0003, angle: Math.random() * Math.PI * 2, color: '#C5AB6E', hasRing: true },
+        { name: 'Uranus', orbitRadius: 500, size: 7, speed: 0.0002, angle: Math.random() * Math.PI * 2, color: '#BBE1E4' },
+        { name: 'Neptune', orbitRadius: 580, size: 7, speed: 0.00015, angle: Math.random() * Math.PI * 2, color: '#6081FF' },
     ];
 
     // 3D rotation - gentle floating motion
@@ -33,7 +35,8 @@ document.addEventListener('DOMContentLoaded', () => {
     function resize() {
         width = canvas.width = window.innerWidth;
         height = canvas.height = window.innerHeight;
-        centerX = width / 2;
+        // Shift to the right of the hero text
+        centerX = width > 768 ? width * 0.75 : width / 2;
         centerY = height / 2;
     }
 
@@ -54,7 +57,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function drawStars() {
-        ctx.fillStyle = 'rgba(255, 255, 255, 0.6)';
         stars.forEach(star => {
             ctx.beginPath();
             ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
@@ -64,19 +66,16 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function project3D(x, y, z) {
-        // Apply 3D rotation around Y axis
         const cosY = Math.cos(rotationY);
         const sinY = Math.sin(rotationY);
         const rotatedX = x * cosY - z * sinY;
         const rotatedZ = x * sinY + z * cosY;
         
-        // Apply tilt (rotation around X axis)
         const cosX = Math.cos(tiltX);
         const sinX = Math.sin(tiltX);
         const finalY = y * cosX - rotatedZ * sinX;
         const finalZ = y * sinX + rotatedZ * cosX;
         
-        // Simple perspective
         const scale = Math.min(width, height) / 900;
         const perspective = 800;
         const factor = perspective / (perspective + finalZ);
@@ -91,7 +90,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function drawOrbit(radius) {
         const points = [];
-        const segments = 80;
+        const segments = 100;
         
         for (let i = 0; i <= segments; i++) {
             const angle = (i / segments) * Math.PI * 2;
@@ -103,12 +102,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         ctx.beginPath();
         ctx.moveTo(points[0].x, points[0].y);
-        
         for (let i = 1; i < points.length; i++) {
             ctx.lineTo(points[i].x, points[i].y);
         }
-        
-        ctx.strokeStyle = 'rgba(255, 255, 255, 0.08)';
+        ctx.strokeStyle = 'rgba(255, 255, 255, 0.05)';
         ctx.lineWidth = 1;
         ctx.stroke();
     }
@@ -116,26 +113,34 @@ document.addEventListener('DOMContentLoaded', () => {
     function drawSun() {
         const projected = project3D(0, 0, 0);
         const scale = Math.min(width, height) / 900;
-        const sunRadius = 15 * scale * projected.scale;
+        const sunRadius = 25 * scale * projected.scale;
 
-        // Subtle glow
+        // Sun Glow
         const gradient = ctx.createRadialGradient(
             projected.x, projected.y, 0,
-            projected.x, projected.y, sunRadius * 3
+            projected.x, projected.y, sunRadius * 4
         );
-        gradient.addColorStop(0, 'rgba(255, 255, 255, 0.3)');
-        gradient.addColorStop(0.5, 'rgba(255, 255, 255, 0.05)');
+        gradient.addColorStop(0, 'rgba(255, 200, 50, 0.4)');
+        gradient.addColorStop(0.4, 'rgba(255, 100, 0, 0.1)');
         gradient.addColorStop(1, 'transparent');
         
         ctx.beginPath();
-        ctx.arc(projected.x, projected.y, sunRadius * 3, 0, Math.PI * 2);
+        ctx.arc(projected.x, projected.y, sunRadius * 4, 0, Math.PI * 2);
         ctx.fillStyle = gradient;
         ctx.fill();
 
-        // Sun core - simple white circle
+        // Sun Core
+        const coreGradient = ctx.createRadialGradient(
+            projected.x, projected.y, 0,
+            projected.x, projected.y, sunRadius
+        );
+        coreGradient.addColorStop(0, '#FFF');
+        coreGradient.addColorStop(0.5, '#FFD700');
+        coreGradient.addColorStop(1, '#FF8C00');
+
         ctx.beginPath();
         ctx.arc(projected.x, projected.y, sunRadius, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
+        ctx.fillStyle = coreGradient;
         ctx.fill();
     }
 
@@ -147,24 +152,23 @@ document.addEventListener('DOMContentLoaded', () => {
         const scale = Math.min(width, height) / 900;
         const planetRadius = planet.size * scale * projected.scale;
 
-        // Depth-based opacity (further = dimmer)
         const depthFactor = (projected.z + 400) / 800;
-        const opacity = Math.max(0.3, Math.min(1, 0.9 - depthFactor * 0.4));
+        const opacity = Math.max(0.4, Math.min(1, 1 - depthFactor * 0.5));
 
-        // Ring for saturn-like planet
+        // Saturn's Rings
         if (planet.hasRing) {
             ctx.beginPath();
             ctx.ellipse(
                 projected.x, projected.y,
-                planetRadius * 2.5, planetRadius * 0.8,
+                planetRadius * 2.8, planetRadius * 0.9,
                 0.3, 0, Math.PI * 2
             );
-            ctx.strokeStyle = `rgba(255, 255, 255, ${opacity * 0.5})`;
-            ctx.lineWidth = 1.5 * projected.scale;
+            ctx.strokeStyle = `rgba(197, 171, 110, ${opacity * 0.6})`;
+            ctx.lineWidth = 3 * projected.scale;
             ctx.stroke();
         }
 
-        // Planet body - simple circle with subtle gradient
+        // Planet Body
         const gradient = ctx.createRadialGradient(
             projected.x - planetRadius * 0.3,
             projected.y - planetRadius * 0.3,
@@ -173,36 +177,44 @@ document.addEventListener('DOMContentLoaded', () => {
             projected.y,
             planetRadius
         );
-        gradient.addColorStop(0, `rgba(255, 255, 255, ${opacity})`);
-        gradient.addColorStop(1, `rgba(200, 200, 200, ${opacity * 0.6})`);
+        gradient.addColorStop(0, planet.color);
+        gradient.addColorStop(1, 'rgba(0,0,0,0.8)');
 
         ctx.beginPath();
         ctx.arc(projected.x, projected.y, planetRadius, 0, Math.PI * 2);
         ctx.fillStyle = gradient;
         ctx.fill();
 
-        return { z: projected.z, draw: null }; // For depth sorting
+        // Jupiter's Stripes
+        if (planet.hasStripes) {
+            ctx.save();
+            ctx.beginPath();
+            ctx.arc(projected.x, projected.y, planetRadius, 0, Math.PI * 2);
+            ctx.clip();
+            
+            ctx.strokeStyle = 'rgba(0,0,0,0.2)';
+            ctx.lineWidth = 2 * projected.scale;
+            for(let i = -planetRadius; i < planetRadius; i += 4 * projected.scale) {
+                ctx.beginPath();
+                ctx.moveTo(projected.x - planetRadius, projected.y + i);
+                ctx.lineTo(projected.x + planetRadius, projected.y + i);
+                ctx.stroke();
+            }
+            ctx.restore();
+        }
     }
 
+    let animationId;
     function animate() {
-        // Clear canvas
         ctx.fillStyle = 'rgb(10, 10, 12)';
         ctx.fillRect(0, 0, width, height);
 
-        // Draw stars
         drawStars();
-
-        // Rotate the system slowly
         rotationY += rotationSpeed;
 
-        // Draw orbits
-        planets.forEach(planet => {
-            drawOrbit(planet.orbitRadius);
-        });
+        planets.forEach(planet => drawOrbit(planet.orbitRadius));
 
-        // Update planet positions and collect for depth sorting
         const renderList = [];
-        
         planets.forEach(planet => {
             planet.angle += planet.speed;
             const x = Math.cos(planet.angle) * planet.orbitRadius;
@@ -211,28 +223,32 @@ document.addEventListener('DOMContentLoaded', () => {
             renderList.push({ planet, z: projected.z });
         });
 
-        // Add sun to render list
         const sunProjected = project3D(0, 0, 0);
         renderList.push({ isSun: true, z: sunProjected.z });
 
-        // Sort by depth (far to near)
         renderList.sort((a, b) => b.z - a.z);
 
-        // Render in order
         renderList.forEach(item => {
-            if (item.isSun) {
-                drawSun();
-            } else {
-                drawPlanet(item.planet);
-            }
+            if (item.isSun) drawSun();
+            else drawPlanet(item.planet);
         });
 
-        requestAnimationFrame(animate);
+        animationId = requestAnimationFrame(animate);
     }
 
+    // Start solar system immediately
     resize();
     initStars();
     animate();
+
+    // Wait for preloader to finish to show the rest of the hero content
+    window.addEventListener('preloaderFinished', () => {
+        // Trigger hero text animation
+        const heroText = document.querySelector('.hero-text');
+        if (heroText) {
+            heroText.classList.add('glitch-in');
+        }
+    });
 
     let resizeTimer;
     window.addEventListener('resize', () => {

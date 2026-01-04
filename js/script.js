@@ -1,3 +1,6 @@
+// Record start time for preloader
+const siteStartTime = Date.now();
+
 // Navigation scroll effect
 let lastScrollY = window.scrollY;
 const nav = document.getElementById('navigation');
@@ -234,10 +237,43 @@ window.addEventListener('scroll', updateActiveNavLink);
 window.addEventListener('load', () => {
     const preloader = document.getElementById('preloader');
     if (!preloader) return;
-    preloader.classList.add('hidden');
-    setTimeout(() => {
-        if (preloader && preloader.parentElement) preloader.parentElement.removeChild(preloader);
-    }, 600);
+    
+    const minDuration = 2000; // 2 seconds minimum
+    const elapsedTime = Date.now() - siteStartTime;
+    const remainingTime = Math.max(0, minDuration - elapsedTime);
+    
+    // Ensure all images are loaded (extra precaution)
+    const images = document.querySelectorAll('img');
+    const imagePromises = Array.from(images).map(img => {
+        if (img.complete) return Promise.resolve();
+        return new Promise(resolve => {
+            img.addEventListener('load', resolve);
+            img.addEventListener('error', resolve);
+        });
+    });
+
+    Promise.all(imagePromises).then(() => {
+        setTimeout(() => {
+            preloader.classList.add('hidden');
+            
+            // Wait for the CSS transition (0.8s) to finish
+            setTimeout(() => {
+                if (preloader && preloader.parentElement) {
+                    preloader.parentElement.removeChild(preloader);
+                }
+                // Dispatch event to start hero animations
+                window.dispatchEvent(new CustomEvent('preloaderFinished'));
+                
+                // Show navigation
+                const nav = document.getElementById('navigation');
+                if (nav) nav.classList.add('visible');
+
+                // Show footer
+                const footer = document.querySelector('.footer');
+                if (footer) footer.classList.add('visible');
+            }, 800);
+        }, remainingTime);
+    });
 });
 
 // Add a toggle button to each project to reveal/hide its description

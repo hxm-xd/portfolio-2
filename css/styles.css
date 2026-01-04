@@ -62,7 +62,14 @@ body {
     left: 0;
     right: 0;
     z-index: 1000;
-    transition: var(--transition);
+    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.8s ease, background 0.3s ease;
+    opacity: 0;
+    transform: translateY(-20px);
+}
+
+.nav.visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .nav.scrolled {
@@ -293,6 +300,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    opacity: 0; /* Hidden until preloader finishes */
 }
 
 /* Glitch Fade-In Animation for Hero Content */
@@ -471,7 +479,7 @@ body {
     display: flex;
     gap: 1rem;
     margin-bottom: 3rem;
-    justify-content: center;
+    justify-content: flex-start;
 }
 
 .glow-effect {
@@ -1758,6 +1766,12 @@ body {
     padding: 2rem 1rem;
     border-top: 1px solid rgba(255, 255, 255, 0.05);
     background: var(--card);
+    opacity: 0;
+    transition: opacity 1s ease;
+}
+
+.footer.visible {
+    opacity: 1;
 }
 
 .footer-content {
@@ -1857,13 +1871,19 @@ body {
     align-items: center;
     justify-content: center;
     z-index: 99999;
-    transition: opacity 0.4s ease;
+    transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.8s;
 }
 
 .preloader.hidden {
     opacity: 0;
-    pointer-events: none;
     visibility: hidden;
+    pointer-events: none;
+}
+
+.preloader.hidden .preloader-inner {
+    transform: scale(0.9);
+    opacity: 0;
+    transition: all 0.5s ease;
 }
 
 .preloader-inner {
@@ -1871,6 +1891,7 @@ body {
     flex-direction: column;
     align-items: center;
     gap: 1rem;
+    transition: all 0.5s ease;
 }
 
 .preloader-spinner {
