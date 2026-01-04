@@ -3,21 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Hamood Thariq - Portfolio</title>
+    <title>Contact - Hamood Thariq</title>
     <meta
       name="description"
-      content="Portfolio of Hamood Thariq - Computing undergraduate passionate about IT project management, full-stack development, and building meaningful digital solutions."
+      content="Contact Hamood Thariq - Get in touch for collaborations and opportunities."
     />
     <meta name="author" content="Hamood Thariq" />
-    <meta
-      property="og:title"
-      content="Hamood Thariq | Aspiring IT Professional & Tech Innovator"
-    />
-    <meta
-      property="og:description"
-      content="Portfolio showcasing projects in software development, IoT systems, and leadership in tech communities."
-    />
-    <meta property="og:type" content="website" />
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
     <link rel="icon" href="favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="css/styles.css" />
@@ -51,7 +42,7 @@
           <span class="logo-text">HT</span>
         </a>
         <div class="nav-links" id="navLinks">
-          <a href="index.html" class="nav-link active">Home</a>
+          <a href="index.html" class="nav-link">Home</a>
           <a href="about.html" class="nav-link">About</a>
           <div class="dropdown">
             <button class="nav-link dropdown-btn">
@@ -65,7 +56,7 @@
               <a href="ventures.html" class="dropdown-item">Ventures</a>
             </div>
           </div>
-          <a href="contact.html" class="nav-link">Contact</a>
+          <a href="contact.html" class="nav-link active">Contact</a>
         </div>
         <div class="nav-right">
           <div class="social-links header-socials">
@@ -103,10 +94,7 @@
         </div>
       </div>
       <div class="mobile-nav" id="mobileNav">
-        <a
-          href="index.html"
-          class="mobile-nav-link active"
-          onclick="closeMobileMenu()"
+        <a href="index.html" class="mobile-nav-link" onclick="closeMobileMenu()"
           >Home</a
         >
         <a href="about.html" class="mobile-nav-link" onclick="closeMobileMenu()"
@@ -144,42 +132,101 @@
         >
         <a
           href="contact.html"
-          class="mobile-nav-link"
+          class="mobile-nav-link active"
           onclick="closeMobileMenu()"
           >Contact</a
         >
       </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section id="hero" class="hero">
-      <div class="anime-background"></div>
-      <div class="container hero-container centered-hero">
-        <div class="hero-text glitch-in">
-          <h1 class="hero-title">
-            Building
-            <span class="text-gradient">Intelligent</span><br />
-            Digital Solutions
-          </h1>
-          <p class="hero-description">
-            Hello, I'm <strong>Hamood Thariq</strong>. <br />
-            <strong>Welcome to my portfolio.</strong>
-          </p>
-
-          <div class="hero-buttons">
-            <a href="contact.html" class="btn btn-primary glow-effect">
-              Let's Talk
-              <i class="fas fa-arrow-right" style="margin-left: 8px"></i>
-            </a>
-            <a
-              href="files/hamood_thariq_cv.pdf"
-              class="btn btn-secondary"
-              download
-            >
-              Download CV
-              <i class="fas fa-download" style="margin-left: 8px"></i>
-            </a>
+    <!-- Contact Section -->
+    <section id="contact" class="section page-section section-alt">
+      <div class="warp-bg">
+        <div class="warp-line warp-line-1"></div>
+        <div class="warp-line warp-line-2"></div>
+        <div class="warp-line warp-line-3"></div>
+        <div class="warp-line warp-line-4"></div>
+        <div class="warp-line warp-line-5"></div>
+        <div class="warp-line warp-line-6"></div>
+        <div class="warp-line warp-line-7"></div>
+        <div class="warp-line warp-line-8"></div>
+        <div class="warp-line warp-line-9"></div>
+        <div class="warp-line warp-line-10"></div>
+        <div class="warp-line warp-line-11"></div>
+        <div class="warp-line warp-line-12"></div>
+      </div>
+      <div class="container">
+        <h2 class="section-title">Get In Touch</h2>
+        <p class="section-subtitle">
+          Let's build something meaningful together.
+        </p>
+        <div class="contact-grid">
+          <div class="contact-info">
+            <div class="contact-item">
+              <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+              <div>
+                <h3 class="contact-label">Email</h3>
+                <a href="mailto:HamoodThariq@outlook.com" class="contact-value"
+                  >HamoodThariq@outlook.com</a
+                >
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon"><i class="fas fa-phone"></i></div>
+              <div>
+                <h3 class="contact-label">Phone</h3>
+                <a href="tel:+94786762734" class="contact-value"
+                  >+94 78 676 2734</a
+                >
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon"><i class="fab fa-linkedin"></i></div>
+              <div>
+                <h3 class="contact-label">LinkedIn</h3>
+                <a
+                  href="https://www.linkedin.com/in/hamood-thariq-979409289/"
+                  target="_blank"
+                  class="contact-value"
+                  >View Profile</a
+                >
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon"><i class="fab fa-github"></i></div>
+              <div>
+                <h3 class="contact-label">GitHub</h3>
+                <a
+                  href="https://github.com/hxm-xd"
+                  target="_blank"
+                  class="contact-value"
+                  >View Profile</a
+                >
+              </div>
+            </div>
           </div>
+          <form class="contact-form" id="contactForm">
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input type="text" id="name" name="name" required />
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" required />
+            </div>
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea
+                id="message"
+                name="message"
+                rows="6"
+                required
+              ></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary btn-full">
+              Send Message <i class="fas fa-paper-plane"></i>
+            </button>
+          </form>
         </div>
       </div>
     </section>
@@ -243,6 +290,5 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
     <script src="js/script.js"></script>
-    <script src="js/hero-animation.js"></script>
   </body>
 </html>

@@ -3,21 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Hamood Thariq - Portfolio</title>
+    <title>Ventures - Hamood Thariq</title>
     <meta
       name="description"
-      content="Portfolio of Hamood Thariq - Computing undergraduate passionate about IT project management, full-stack development, and building meaningful digital solutions."
+      content="Future ventures and business ideas of Hamood Thariq."
     />
     <meta name="author" content="Hamood Thariq" />
-    <meta
-      property="og:title"
-      content="Hamood Thariq | Aspiring IT Professional & Tech Innovator"
-    />
-    <meta
-      property="og:description"
-      content="Portfolio showcasing projects in software development, IoT systems, and leadership in tech communities."
-    />
-    <meta property="og:type" content="website" />
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
     <link rel="icon" href="favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="css/styles.css" />
@@ -51,10 +42,10 @@
           <span class="logo-text">HT</span>
         </a>
         <div class="nav-links" id="navLinks">
-          <a href="index.html" class="nav-link active">Home</a>
+          <a href="index.html" class="nav-link">Home</a>
           <a href="about.html" class="nav-link">About</a>
           <div class="dropdown">
-            <button class="nav-link dropdown-btn">
+            <button class="nav-link dropdown-btn active">
               Explore <i class="fas fa-chevron-down"></i>
             </button>
             <div class="dropdown-content">
@@ -62,7 +53,7 @@
               <a href="skills.html" class="dropdown-item">Skills</a>
               <a href="experience.html" class="dropdown-item">Experience</a>
               <a href="education.html" class="dropdown-item">Education</a>
-              <a href="ventures.html" class="dropdown-item">Ventures</a>
+              <a href="ventures.html" class="dropdown-item active">Ventures</a>
             </div>
           </div>
           <a href="contact.html" class="nav-link">Contact</a>
@@ -103,10 +94,7 @@
         </div>
       </div>
       <div class="mobile-nav" id="mobileNav">
-        <a
-          href="index.html"
-          class="mobile-nav-link active"
-          onclick="closeMobileMenu()"
+        <a href="index.html" class="mobile-nav-link" onclick="closeMobileMenu()"
           >Home</a
         >
         <a href="about.html" class="mobile-nav-link" onclick="closeMobileMenu()"
@@ -138,7 +126,7 @@
         >
         <a
           href="ventures.html"
-          class="mobile-nav-link"
+          class="mobile-nav-link active"
           onclick="closeMobileMenu()"
           >Ventures</a
         >
@@ -151,33 +139,69 @@
       </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section id="hero" class="hero">
-      <div class="anime-background"></div>
-      <div class="container hero-container centered-hero">
-        <div class="hero-text glitch-in">
-          <h1 class="hero-title">
-            Building
-            <span class="text-gradient">Intelligent</span><br />
-            Digital Solutions
-          </h1>
-          <p class="hero-description">
-            Hello, I'm <strong>Hamood Thariq</strong>. <br />
-            <strong>Welcome to my portfolio.</strong>
-          </p>
+    <!-- Ventures Section -->
+    <section id="ventures" class="section page-section section-alt">
+      <div class="radar-bg">
+        <div class="radar-center">
+          <div class="radar-ring radar-ring-1"></div>
+          <div class="radar-ring radar-ring-2"></div>
+          <div class="radar-ring radar-ring-3"></div>
+          <div class="radar-ring radar-ring-4"></div>
+        </div>
+        <div class="radar-center radar-center-2">
+          <div class="radar-ring radar-ring-1"></div>
+          <div class="radar-ring radar-ring-2"></div>
+          <div class="radar-ring radar-ring-3"></div>
+          <div class="radar-ring radar-ring-4"></div>
+        </div>
+      </div>
+      <div class="container">
+        <h2 class="section-title">Future Ventures</h2>
+        <p class="section-subtitle">Turning ambitious dreams into reality.</p>
 
-          <div class="hero-buttons">
-            <a href="contact.html" class="btn btn-primary glow-effect">
-              Let's Talk
-              <i class="fas fa-arrow-right" style="margin-left: 8px"></i>
-            </a>
+        <div class="venture-card">
+          <div
+            class="venture-bg"
+            style="background-image: url('altair/Altair-banner.png')"
+          ></div>
+          <div class="venture-content">
+            <div class="venture-header">
+              <!-- Icon removed, using logo in visual section -->
+              <h3 class="altair-title">
+                <a
+                  href="https://www.altair.infotech.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style="text-decoration: none; color: white"
+                  >Altair IT</a
+                >
+              </h3>
+            </div>
+            <p class="venture-tagline">Innovating the Future of Technology</p>
+            <p class="venture-description">
+              My vision for a next-generation IT company dedicated to delivering
+              cutting-edge solutions in IoT, AI, and software development.
+              Altair IT represents my commitment to building a tech ecosystem
+              that solves complex problems and drives digital transformation
+              globally.
+            </p>
+            <div class="venture-badges">
+              <span class="badge badge-primary">Vision</span>
+              <span class="badge badge-primary">Innovation</span>
+              <span class="badge badge-primary">Enterprise</span>
+            </div>
+          </div>
+          <div class="venture-visual">
             <a
-              href="files/hamood_thariq_cv.pdf"
-              class="btn btn-secondary"
-              download
+              href="https://www.altair.infotech.com"
+              target="_blank"
+              rel="noopener noreferrer"
             >
-              Download CV
-              <i class="fas fa-download" style="margin-left: 8px"></i>
+              <img
+                src="altair/Altair-logo.png"
+                alt="Altair IT Logo"
+                class="altair-logo"
+              />
             </a>
           </div>
         </div>
@@ -243,6 +267,5 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
     <script src="js/script.js"></script>
-    <script src="js/hero-animation.js"></script>
   </body>
 </html>

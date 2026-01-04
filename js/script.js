@@ -122,6 +122,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+/*
 // Active navigation link highlight
 function updateActiveNavLink() {
     const sections = document.querySelectorAll('section[id]');
@@ -147,6 +148,7 @@ function updateActiveNavLink() {
 }
 
 window.addEventListener('scroll', updateActiveNavLink);
+*/
 
 // Removed dynamic JSON rendering. Using hardcoded content in index.html.
 
@@ -310,3 +312,23 @@ document.addEventListener('DOMContentLoaded', () => {
         items[idx].classList.add('active');
     }, 2600);
 });
+
+// Initialize Lenis for smooth scrolling
+const lenis = new Lenis({
+  duration: 2.5, // Slower duration for smoother feel
+  easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+  direction: 'vertical',
+  gestureDirection: 'vertical',
+  smooth: true,
+  mouseMultiplier: 0.8, // Reduce sensitivity slightly
+  smoothTouch: false,
+  touchMultiplier: 2,
+});
+
+function raf(time) {
+  lenis.raf(time);
+  requestAnimationFrame(raf);
+}
+
+requestAnimationFrame(raf);
+

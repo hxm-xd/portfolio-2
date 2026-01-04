@@ -3,21 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Hamood Thariq - Portfolio</title>
+    <title>Skills - Hamood Thariq</title>
     <meta
       name="description"
-      content="Portfolio of Hamood Thariq - Computing undergraduate passionate about IT project management, full-stack development, and building meaningful digital solutions."
+      content="Technical skills of Hamood Thariq - Programming languages, frameworks, tools, and more."
     />
     <meta name="author" content="Hamood Thariq" />
-    <meta
-      property="og:title"
-      content="Hamood Thariq | Aspiring IT Professional & Tech Innovator"
-    />
-    <meta
-      property="og:description"
-      content="Portfolio showcasing projects in software development, IoT systems, and leadership in tech communities."
-    />
-    <meta property="og:type" content="website" />
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
     <link rel="icon" href="favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="css/styles.css" />
@@ -51,15 +42,15 @@
           <span class="logo-text">HT</span>
         </a>
         <div class="nav-links" id="navLinks">
-          <a href="index.html" class="nav-link active">Home</a>
+          <a href="index.html" class="nav-link">Home</a>
           <a href="about.html" class="nav-link">About</a>
           <div class="dropdown">
-            <button class="nav-link dropdown-btn">
+            <button class="nav-link dropdown-btn active">
               Explore <i class="fas fa-chevron-down"></i>
             </button>
             <div class="dropdown-content">
               <a href="projects.html" class="dropdown-item">Projects</a>
-              <a href="skills.html" class="dropdown-item">Skills</a>
+              <a href="skills.html" class="dropdown-item active">Skills</a>
               <a href="experience.html" class="dropdown-item">Experience</a>
               <a href="education.html" class="dropdown-item">Education</a>
               <a href="ventures.html" class="dropdown-item">Ventures</a>
@@ -103,10 +94,7 @@
         </div>
       </div>
       <div class="mobile-nav" id="mobileNav">
-        <a
-          href="index.html"
-          class="mobile-nav-link active"
-          onclick="closeMobileMenu()"
+        <a href="index.html" class="mobile-nav-link" onclick="closeMobileMenu()"
           >Home</a
         >
         <a href="about.html" class="mobile-nav-link" onclick="closeMobileMenu()"
@@ -120,7 +108,7 @@
         >
         <a
           href="skills.html"
-          class="mobile-nav-link"
+          class="mobile-nav-link active"
           onclick="closeMobileMenu()"
           >Skills</a
         >
@@ -151,34 +139,147 @@
       </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section id="hero" class="hero">
-      <div class="anime-background"></div>
-      <div class="container hero-container centered-hero">
-        <div class="hero-text glitch-in">
-          <h1 class="hero-title">
-            Building
-            <span class="text-gradient">Intelligent</span><br />
-            Digital Solutions
-          </h1>
-          <p class="hero-description">
-            Hello, I'm <strong>Hamood Thariq</strong>. <br />
-            <strong>Welcome to my portfolio.</strong>
-          </p>
+    <!-- Skills Section -->
+    <section id="skills" class="section page-section">
+      <div class="binary-rain">
+        <div class="binary-column">10110100101</div>
+        <div class="binary-column">01101011010</div>
+        <div class="binary-column">11010010110</div>
+        <div class="binary-column">00101101001</div>
+        <div class="binary-column">10011010110</div>
+        <div class="binary-column">01100101011</div>
+        <div class="binary-column">11001011010</div>
+      </div>
+      <div class="container">
+        <h2 class="section-title">Technical Skills</h2>
+        <div class="skills-grid">
+          <!-- Programming -->
+          <div class="card">
+            <h3 class="card-title">Programming Languages</h3>
+            <div class="skills-list">
+              <span class="skill-badge"><i class="fas fa-code"></i>C</span>
+              <span class="skill-badge"><i class="fas fa-code"></i>C++</span>
+              <span class="skill-badge"><i class="fas fa-hashtag"></i>C#</span>
+              <span class="skill-badge"><i class="fab fa-java"></i>Java</span>
+              <span class="skill-badge"
+                ><i class="fab fa-js"></i>JavaScript</span
+              >
+              <span class="skill-badge"
+                ><i class="fab fa-python"></i>Python</span
+              >
+            </div>
+          </div>
 
-          <div class="hero-buttons">
-            <a href="contact.html" class="btn btn-primary glow-effect">
-              Let's Talk
-              <i class="fas fa-arrow-right" style="margin-left: 8px"></i>
-            </a>
-            <a
-              href="files/hamood_thariq_cv.pdf"
-              class="btn btn-secondary"
-              download
-            >
-              Download CV
-              <i class="fas fa-download" style="margin-left: 8px"></i>
-            </a>
+          <div class="card">
+            <h3 class="card-title">Frameworks</h3>
+            <div class="skills-list">
+              <span class="skill-badge"
+                ><i class="fas fa-seedling"></i>Spring Boot</span
+              >
+              <span class="skill-badge"
+                ><i class="fab fa-node-js"></i>Node.js</span
+              >
+              <span class="skill-badge"
+                ><i class="fab fa-react"></i>React.js</span
+              >
+              <span class="skill-badge"
+                ><i class="fas fa-server"></i>Express.js</span
+              >
+              <span class="skill-badge"
+                ><i class="fas fa-code"></i>Flutter (FlutterFlow)</span
+              >
+              <span class="skill-badge"><i class="fas fa-code"></i>Kotlin</span>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3 class="card-title">Embedded Systems and IoT</h3>
+            <div class="skills-list">
+              <span class="skill-badge"
+                ><i class="fas fa-microchip"></i>Microcontroller
+                Programming</span
+              >
+
+              <span class="skill-badge"><i class="fas fa-cloud"></i>Blynk</span>
+              <span class="skill-badge"
+                ><i class="fas fa-tools"></i>Soldering</span
+              >
+              <span class="skill-badge"
+                ><i class="fas fa-pencil-ruler"></i>CAD</span
+              >
+              <span class="skill-badge"
+                ><i class="fas fa-bolt"></i>Circuit Design</span
+              >
+              <span class="skill-badge"
+                ><i class="fas fa-tools"></i>Circuit Development</span
+              >
+            </div>
+          </div>
+
+          <div class="card">
+            <h3 class="card-title">Tools &amp; Platforms</h3>
+            <div class="skills-list">
+              <span class="skill-badge"
+                ><i class="fab fa-github"></i>GitHub</span
+              >
+              <span class="skill-badge"
+                ><i class="fas fa-code-branch"></i>Git</span
+              >
+              <span class="skill-badge"
+                ><i class="fas fa-cloud"></i>Google Cloud</span
+              >
+              <span class="skill-badge"
+                ><i class="fas fa-file-code"></i>Google Colab</span
+              >
+              <span class="skill-badge"
+                ><i class="fas fa-cloud"></i>Vercel</span
+              >
+              <span class="skill-badge"
+                ><i class="fas fa-cloud"></i>Netlify</span
+              >
+              <span class="skill-badge"
+                ><i class="fas fa-server"></i>Render</span
+              >
+            </div>
+          </div>
+
+          <div class="card">
+            <h3 class="card-title">Database</h3>
+            <div class="skills-list">
+              <span class="skill-badge"
+                ><i class="fas fa-database"></i>MySQL</span
+              >
+              <span class="skill-badge"
+                ><i class="fas fa-database"></i>SQL</span
+              >
+              <span class="skill-badge"
+                ><i class="fas fa-database"></i>MS SQL</span
+              >
+              <span class="skill-badge"
+                ><i class="fas fa-fire"></i>Firebase</span
+              >
+              <span class="skill-badge"
+                ><i class="fas fa-database"></i>MongoDB</span
+              >
+            </div>
+          </div>
+
+          <div class="card">
+            <h3 class="card-title">Data Analytics &amp; BI</h3>
+            <div class="skills-list">
+              <span class="skill-badge"
+                ><i class="fas fa-chart-line"></i>Power BI</span
+              >
+              <span class="skill-badge"
+                ><i class="fas fa-chart-bar"></i>Jamovi</span
+              >
+              <span class="skill-badge"
+                ><i class="fas fa-file-excel"></i>MS Excel</span
+              >
+              <span class="skill-badge"
+                ><i class="fas fa-warehouse"></i>Data Warehousing</span
+              >
+            </div>
           </div>
         </div>
       </div>
@@ -243,6 +344,5 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
     <script src="js/script.js"></script>
-    <script src="js/hero-animation.js"></script>
   </body>
 </html>

@@ -3,21 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Hamood Thariq - Portfolio</title>
+    <title>About - Hamood Thariq</title>
     <meta
       name="description"
-      content="Portfolio of Hamood Thariq - Computing undergraduate passionate about IT project management, full-stack development, and building meaningful digital solutions."
+      content="About Hamood Thariq - Computing undergraduate passionate about IT project management, full-stack development, and building meaningful digital solutions."
     />
     <meta name="author" content="Hamood Thariq" />
-    <meta
-      property="og:title"
-      content="Hamood Thariq | Aspiring IT Professional & Tech Innovator"
-    />
-    <meta
-      property="og:description"
-      content="Portfolio showcasing projects in software development, IoT systems, and leadership in tech communities."
-    />
-    <meta property="og:type" content="website" />
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
     <link rel="icon" href="favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="css/styles.css" />
@@ -51,8 +42,8 @@
           <span class="logo-text">HT</span>
         </a>
         <div class="nav-links" id="navLinks">
-          <a href="index.html" class="nav-link active">Home</a>
-          <a href="about.html" class="nav-link">About</a>
+          <a href="index.html" class="nav-link">Home</a>
+          <a href="about.html" class="nav-link active">About</a>
           <div class="dropdown">
             <button class="nav-link dropdown-btn">
               Explore <i class="fas fa-chevron-down"></i>
@@ -103,13 +94,13 @@
         </div>
       </div>
       <div class="mobile-nav" id="mobileNav">
-        <a
-          href="index.html"
-          class="mobile-nav-link active"
-          onclick="closeMobileMenu()"
+        <a href="index.html" class="mobile-nav-link" onclick="closeMobileMenu()"
           >Home</a
         >
-        <a href="about.html" class="mobile-nav-link" onclick="closeMobileMenu()"
+        <a
+          href="about.html"
+          class="mobile-nav-link active"
+          onclick="closeMobileMenu()"
           >About</a
         >
         <a
@@ -151,34 +142,90 @@
       </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section id="hero" class="hero">
-      <div class="anime-background"></div>
-      <div class="container hero-container centered-hero">
-        <div class="hero-text glitch-in">
-          <h1 class="hero-title">
-            Building
-            <span class="text-gradient">Intelligent</span><br />
-            Digital Solutions
-          </h1>
-          <p class="hero-description">
-            Hello, I'm <strong>Hamood Thariq</strong>. <br />
-            <strong>Welcome to my portfolio.</strong>
-          </p>
+    <!-- About Section -->
+    <section id="about" class="section page-section">
+      <div class="nebula-bg">
+        <div class="nebula-cloud nebula-cloud-1"></div>
+        <div class="nebula-cloud nebula-cloud-2"></div>
+        <div class="nebula-cloud nebula-cloud-3"></div>
+      </div>
+      <div class="container">
+        <h2 class="section-title">About Me</h2>
+        <div class="about-container">
+          <div class="about-visual">
+            <div class="hero-image-wrapper about-image-wrapper">
+              <div class="image-glow"></div>
+              <img
+                src="assets/hero-pic.jpg"
+                alt="Hamood Thariq"
+                class="hero-image"
+              />
+              <div class="experience-badge-float">
+                <span class="exp-number">2+</span>
+                <span class="exp-text">of hands-on experience</span>
+              </div>
+            </div>
+          </div>
+          <div class="about-content">
+            <div class="about-intro">
+              <p>
+                I am a
+                <strong>Software Engineering Undergraduate</strong> with a
+                passion for building systems that matter. My journey is defined
+                by a curiosity for how things work and a drive to make them work
+                better.
+              </p>
+            </div>
 
-          <div class="hero-buttons">
-            <a href="contact.html" class="btn btn-primary glow-effect">
-              Let's Talk
-              <i class="fas fa-arrow-right" style="margin-left: 8px"></i>
-            </a>
-            <a
-              href="files/hamood_thariq_cv.pdf"
-              class="btn btn-secondary"
-              download
-            >
-              Download CV
-              <i class="fas fa-download" style="margin-left: 8px"></i>
-            </a>
+            <div class="bento-grid">
+              <div class="bento-card role-card">
+                <div class="bento-icon">
+                  <i class="fas fa-user-graduate"></i>
+                </div>
+                <h3 class="bento-title">Current Role</h3>
+                <p class="bento-text">
+                  Pursuing HND in Software Engineering at <strong>NIBM</strong>.
+                  Building a robust foundation in full-stack development and IT
+                  management.
+                </p>
+              </div>
+
+              <div class="bento-card goals-card">
+                <div class="bento-icon"><i class="fas fa-bullseye"></i></div>
+                <h3 class="bento-title">The Goal</h3>
+                <p class="bento-text">
+                  To become a specialized <strong>Backend Engineer</strong> &
+                  <strong>IoT Architect</strong>, creating scalable solutions
+                  for complex real-world problems.
+                </p>
+              </div>
+
+              <div class="bento-card skills-card">
+                <h3 class="bento-title">
+                  <i class="fas fa-bolt" style="color: var(--primary)"></i>
+                  Superpowers
+                </h3>
+                <div class="tags-wrapper">
+                  <span class="bento-tag">Leadership</span>
+                  <span class="bento-tag">Problem Solving</span>
+                  <span class="bento-tag">Communication</span>
+                  <span class="bento-tag">Adaptability</span>
+                </div>
+              </div>
+
+              <div class="bento-card interests-card">
+                <h3 class="bento-title">
+                  <i class="fas fa-heart" style="color: var(--secondary)"></i>
+                  Passionate About
+                </h3>
+                <div class="tags-wrapper">
+                  <span class="bento-tag">Embedded Systems & IoT</span>
+                  <span class="bento-tag">Robotics</span>
+                  <span class="bento-tag">Project Management</span>
+                  <span class="bento-tag">Solutions Architecture</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -243,6 +290,5 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
     <script src="js/script.js"></script>
-    <script src="js/hero-animation.js"></script>
   </body>
 </html>

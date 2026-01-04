@@ -37,7 +37,7 @@
 }
 
 html {
-    scroll-behavior: smooth;
+    /* scroll-behavior: smooth; - Removed to allow Lenis to handle smoothing */
 }
 
 body {
@@ -125,6 +125,82 @@ body {
 
 .nav-link:hover::after {
     width: 100%;
+}
+
+/* Dropdown Styles */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1rem;
+    font-family: inherit;
+    padding: 0;
+    color: var(--muted-foreground);
+    transition: color 0.3s;
+}
+
+.dropdown-btn:hover, .dropdown:hover .dropdown-btn {
+    color: var(--primary);
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(10, 10, 12, 0.95);
+    backdrop-filter: blur(12px);
+    min-width: 200px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: var(--radius);
+    padding: 0.5rem;
+    z-index: 1000;
+    margin-top: 1rem;
+    opacity: 0;
+    transition: opacity 0.3s ease, margin-top 0.3s ease;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+    opacity: 1;
+    margin-top: 0.5rem;
+    animation: fadeInDropdown 0.3s ease forwards;
+}
+
+@keyframes fadeInDropdown {
+    from { opacity: 0; transform: translate(-50%, 10px); }
+    to { opacity: 1; transform: translate(-50%, 0); }
+}
+
+.dropdown-item {
+    color: var(--muted-foreground);
+    padding: 0.75rem 1rem;
+    text-decoration: none;
+    display: block;
+    border-radius: var(--radius);
+    transition: all 0.2s;
+    font-size: 0.9rem;
+}
+
+.dropdown-item:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+    color: var(--primary);
+    padding-left: 1.25rem;
+}
+
+.dropdown-item.active {
+    color: var(--primary);
+    background-color: rgba(0, 255, 136, 0.05);
 }
 
 .mobile-menu-btn {
@@ -2036,3 +2112,143 @@ body {
     .projects-grid { column-count: 3; }
 }
 }
+
+/* New Header Styles */
+.glass-nav {
+    background: rgba(10, 10, 12, 0.7);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
+
+.nav-logo {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+
+.logo-text {
+    font-size: 1.5rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    letter-spacing: -1px;
+}
+
+.nav-link.active {
+    color: var(--primary);
+}
+
+.nav-link.active::after {
+    width: 100%;
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.header-socials {
+    display: none;
+}
+
+@media (min-width: 768px) {
+    .header-socials {
+        display: flex;
+        gap: 1rem;
+    }
+    
+    .header-socials .social-link {
+        font-size: 1.1rem;
+        color: var(--muted-foreground);
+        transition: var(--transition);
+    }
+    
+    .header-socials .social-link:hover {
+        color: var(--primary);
+        transform: translateY(-2px);
+    }
+}
+
+/* Page Section Padding */
+.page-section {
+    padding-top: 8rem;
+    min-height: 100vh;
+}
+
+/* New Footer Styles */
+.modern-footer {
+    background: linear-gradient(to top, #050505, #0a0a0c);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 4rem 0 2rem;
+    margin-top: auto;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    margin-bottom: 3rem;
+}
+
+@media (min-width: 768px) {
+    .footer-grid {
+        grid-template-columns: 2fr 1fr 1fr;
+    }
+}
+
+.footer-col h3 {
+    color: var(--foreground);
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+}
+
+.footer-col p {
+    color: var(--muted-foreground);
+    line-height: 1.6;
+    max-width: 300px;
+}
+
+.footer-links {
+    list-style: none;
+}
+
+.footer-links li {
+    margin-bottom: 0.8rem;
+}
+
+.footer-links a {
+    color: var(--muted-foreground);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.footer-links a:hover {
+    color: var(--primary);
+    padding-left: 5px;
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    text-align: center;
+    color: var(--muted-foreground);
+    font-size: 0.9rem;
+}
+
+@media (min-width: 768px) {
+    .footer-bottom {
+        flex-direction: row;
+        justify-content: space-between;
+        text-align: left;
+    }
+}
+

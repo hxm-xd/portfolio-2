@@ -3,21 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Hamood Thariq - Portfolio</title>
+    <title>Education - Hamood Thariq</title>
     <meta
       name="description"
-      content="Portfolio of Hamood Thariq - Computing undergraduate passionate about IT project management, full-stack development, and building meaningful digital solutions."
+      content="Education and certifications of Hamood Thariq."
     />
     <meta name="author" content="Hamood Thariq" />
-    <meta
-      property="og:title"
-      content="Hamood Thariq | Aspiring IT Professional & Tech Innovator"
-    />
-    <meta
-      property="og:description"
-      content="Portfolio showcasing projects in software development, IoT systems, and leadership in tech communities."
-    />
-    <meta property="og:type" content="website" />
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
     <link rel="icon" href="favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="css/styles.css" />
@@ -51,17 +42,19 @@
           <span class="logo-text">HT</span>
         </a>
         <div class="nav-links" id="navLinks">
-          <a href="index.html" class="nav-link active">Home</a>
+          <a href="index.html" class="nav-link">Home</a>
           <a href="about.html" class="nav-link">About</a>
           <div class="dropdown">
-            <button class="nav-link dropdown-btn">
+            <button class="nav-link dropdown-btn active">
               Explore <i class="fas fa-chevron-down"></i>
             </button>
             <div class="dropdown-content">
               <a href="projects.html" class="dropdown-item">Projects</a>
               <a href="skills.html" class="dropdown-item">Skills</a>
               <a href="experience.html" class="dropdown-item">Experience</a>
-              <a href="education.html" class="dropdown-item">Education</a>
+              <a href="education.html" class="dropdown-item active"
+                >Education</a
+              >
               <a href="ventures.html" class="dropdown-item">Ventures</a>
             </div>
           </div>
@@ -103,10 +96,7 @@
         </div>
       </div>
       <div class="mobile-nav" id="mobileNav">
-        <a
-          href="index.html"
-          class="mobile-nav-link active"
-          onclick="closeMobileMenu()"
+        <a href="index.html" class="mobile-nav-link" onclick="closeMobileMenu()"
           >Home</a
         >
         <a href="about.html" class="mobile-nav-link" onclick="closeMobileMenu()"
@@ -132,7 +122,7 @@
         >
         <a
           href="education.html"
-          class="mobile-nav-link"
+          class="mobile-nav-link active"
           onclick="closeMobileMenu()"
           >Education</a
         >
@@ -151,34 +141,69 @@
       </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section id="hero" class="hero">
-      <div class="anime-background"></div>
-      <div class="container hero-container centered-hero">
-        <div class="hero-text glitch-in">
-          <h1 class="hero-title">
-            Building
-            <span class="text-gradient">Intelligent</span><br />
-            Digital Solutions
-          </h1>
-          <p class="hero-description">
-            Hello, I'm <strong>Hamood Thariq</strong>. <br />
-            <strong>Welcome to my portfolio.</strong>
-          </p>
-
-          <div class="hero-buttons">
-            <a href="contact.html" class="btn btn-primary glow-effect">
-              Let's Talk
-              <i class="fas fa-arrow-right" style="margin-left: 8px"></i>
-            </a>
-            <a
-              href="files/hamood_thariq_cv.pdf"
-              class="btn btn-secondary"
-              download
-            >
-              Download CV
-              <i class="fas fa-download" style="margin-left: 8px"></i>
-            </a>
+    <!-- Education Section -->
+    <section id="education" class="section page-section">
+      <div class="constellation-bg">
+        <div class="constellation-star constellation-star-1"></div>
+        <div class="constellation-star constellation-star-2"></div>
+        <div class="constellation-star constellation-star-3"></div>
+        <div class="constellation-star constellation-star-4"></div>
+        <div class="constellation-star constellation-star-5"></div>
+        <div class="constellation-star constellation-star-6"></div>
+      </div>
+      <div class="container">
+        <h2 class="section-title">Education & Certifications</h2>
+        <div class="education-section">
+          <h3 class="subsection-title">Education</h3>
+          <div class="card">
+            <div class="education-header">
+              <div>
+                <h4 class="card-title">
+                  Higher National Diploma in Software Engineering (Year 2)
+                </h4>
+                <p class="organization">
+                  National Institute of Business Management (NIBM)
+                </p>
+              </div>
+              <span class="badge badge-primary">Present</span>
+            </div>
+            <p class="card-text">
+              Comprehensive computing program covering software development,
+              database management, networking, and IT project management
+              principles.
+            </p>
+          </div>
+        </div>
+        <div class="education-section">
+          <h3 class="subsection-title">Certifications</h3>
+          <div class="certifications-grid">
+            <div class="cert-card">
+              <div class="cert-icon"><i class="fas fa-certificate"></i></div>
+              <h4 class="cert-title">
+                Project Management Reinvented for Non-Project Managers
+              </h4>
+              <p class="cert-provider">LinkedIn Learning</p>
+            </div>
+            <div class="cert-card">
+              <div class="cert-icon"><i class="fas fa-certificate"></i></div>
+              <h4 class="cert-title">
+                Certificate Software Testing & Quality Assuarance
+              </h4>
+              <p class="cert-provider">
+                LinkedIn Learning | Institute of Management, Technology and
+                Finance
+              </p>
+            </div>
+            <div class="cert-card">
+              <div class="cert-icon"><i class="fas fa-certificate"></i></div>
+              <h4 class="cert-title">Hands on Introduction: Java</h4>
+              <p class="cert-provider">LinkedIn Learning</p>
+            </div>
+            <div class="cert-card">
+              <div class="cert-icon"><i class="fas fa-certificate"></i></div>
+              <h4 class="cert-title">Introduction to NoSQL</h4>
+              <p class="cert-provider">LinkedIn Learning</p>
+            </div>
           </div>
         </div>
       </div>
@@ -243,6 +268,5 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
     <script src="js/script.js"></script>
-    <script src="js/hero-animation.js"></script>
   </body>
 </html>
