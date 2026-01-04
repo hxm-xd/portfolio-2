@@ -1,19 +1,15 @@
-// Dashboard Logic
+// Dashboard Logic - Connected to Backend API
+const API_URL = 'http://localhost:5000/api';
 
 document.addEventListener('DOMContentLoaded', () => {
     // State Management
     const state = {
-        isLoggedIn: localStorage.getItem('isAdminLoggedIn') === 'true',
+        token: localStorage.getItem('adminToken'),
+        isLoggedIn: !!localStorage.getItem('adminToken'),
         activeTab: 'overview',
-        projects: [
-            { id: 1, title: 'E-Commerce Platform', category: 'Full Stack', description: 'A modern e-commerce solution with React and Node.js' },
-            { id: 2, title: 'Portfolio v1', category: 'Frontend', description: 'My first portfolio website using HTML/CSS' },
-            { id: 3, title: 'Task Manager App', category: 'Mobile', description: 'Flutter based task management application' },
-            { id: 4, title: 'Weather Dashboard', category: 'API Integration', description: 'Real-time weather data visualization' }
-        ],
-        skills: [
-            'JavaScript', 'React', 'Node.js', 'Python', 'UI/UX', 'Git', 'MongoDB', 'SQL', 'Tailwind', 'TypeScript', 'Figma', 'Docker'
-        ]
+        projects: [],
+        messages: [],
+        settings: {}
     };
 
     // DOM Elements
@@ -24,10 +20,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const navItems = document.querySelectorAll('.nav-item[data-tab]');
     const tabContents = document.querySelectorAll('.tab-content');
     const pageTitle = document.getElementById('page-title');
+    
+    // Projects Elements
     const projectsContainer = document.getElementById('projects-list-container');
-    const skillsContainer = document.getElementById('skills-container');
     const addProjectBtn = document.getElementById('add-project-btn');
-    const addSkillBtn = document.getElementById('add-skill-btn');
+    const projectModal = document.getElementById('project-modal');
+    const projectForm = document.getElementById('project-form');
+    const closeModalBtn = document.querySelector('.close-modal');
+    
+    // Messages Elements
+    const messagesContainer = document.getElementById('messages-container');
+    
+    // Social Elements
+    const socialForm = document.getElementById('social-links-form');
 
     // Initialize
     init();
@@ -35,8 +40,9 @@ document.addEventListener('DOMContentLoaded', () => {
     function init() {
         checkAuth();
         setupEventListeners();
-        renderProjects();
-        renderSkills();
+        if (state.isLoggedIn) {
+            loadDashboardData();
+        }
     }
 
     // Auth Functions
@@ -58,45 +64,193 @@ document.addEventListener('DOMContentLoaded', () => {
         dashboardView.classList.add('active');
     }
 
-    function handleLogin(e) {
+    async function handleLogin(e) {
         e.preventDefault();
         const username = document.getElementById('username').value;
         const password = document.getElementById('password').value;
+        const btn = e.target.querySelector('button');
 
-        // Mock validation
-        if (username === 'admin' && password === 'admin123') { // Simple mock creds
-            state.isLoggedIn = true;
-            localStorage.setItem('isAdminLoggedIn', 'true');
+        try {
+            const response = await fetch(`${API_URL}/auth/login`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ username, password })
+            });
 
-            // Animation effect
-            const btn = e.target.querySelector('button');
-            btn.innerHTML = '<i class="fas fa-check"></i> Success';
-            btn.style.background = '#10b981';
+            const data = await response.json();
 
-            setTimeout(() => {
-                showDashboard();
-                btn.innerHTML = '<span>Login</span><i class="fas fa-arrow-right"></i>';
-                btn.style.background = '';
-                e.target.reset();
-            }, 800);
-        } else {
-            alert('Invalid credentials! Try admin / admin123');
+            if (response.ok) {
+                state.token = data.token;
+                state.isLoggedIn = true;
+                localStorage.setItem('adminToken', data.token);
+
+                btn.innerHTML = '<i class="fas fa-check"></i> Success';
+                btn.style.background = '#10b981';
+
+                setTimeout(() => {
+                    showDashboard();
+                    loadDashboardData();
+                    btn.innerHTML = '<span>Login</span><i class="fas fa-arrow-right"></i>';
+                    btn.style.background = '';
+                    e.target.reset();
+                }, 800);
+            } else {
+                alert(data.msg || 'Login failed');
+            }
+        } catch (err) {
+            console.error('Login error:', err);
+            alert('Server error. Is the backend running?');
         }
     }
 
     function handleLogout() {
+        state.token = null;
         state.isLoggedIn = false;
-        localStorage.removeItem('isAdminLoggedIn');
+        localStorage.removeItem('adminToken');
         showLogin();
     }
 
-    // Navigation Functions
+    // API Helpers
+    async function fetchWithAuth(endpoint, options = {}) {
+        const headers = {
+            'Content-Type': 'application/json',
+            'x-auth-token': state.token,
+            ...options.headers
+        };
+
+        const response = await fetch(`${API_URL}${endpoint}`, { ...options, headers });
+        
+        if (response.status === 401) {
+            handleLogout();
+            throw new Error('Session expired');
+        }
+        
+        return response;
+    }
+
+    // Data Loading
+    async function loadDashboardData() {
+        try {
+            await Promise.all([
+                loadProjects(),
+                loadMessages(),
+                loadSettings()
+            ]);
+            updateOverviewStats();
+        } catch (err) {
+            console.error('Error loading data:', err);
+        }
+    }
+
+    async function loadProjects() {
+        try {
+            const res = await fetch(`${API_URL}/projects`);
+            state.projects = await res.json();
+            renderProjects();
+        } catch (err) {
+            console.error('Error loading projects:', err);
+        }
+    }
+
+    async function loadMessages() {
+        try {
+            const res = await fetchWithAuth('/contacts');
+            state.messages = await res.json();
+            renderMessages();
+        } catch (err) {
+            console.error('Error loading messages:', err);
+        }
+    }
+
+    async function loadSettings() {
+        try {
+            const res = await fetch(`${API_URL}/settings`);
+            state.settings = await res.json();
+            fillSocialForm();
+        } catch (err) {
+            console.error('Error loading settings:', err);
+        }
+    }
+
+    // Render Functions
+    function renderProjects() {
+        if (!projectsContainer) return;
+        projectsContainer.innerHTML = '';
+        state.projects.forEach(project => {
+            const el = document.createElement('div');
+            el.className = 'project-admin-card';
+            el.innerHTML = `
+                <div class="project-admin-img">
+                    <img src="../${project.image || 'assets/placeholder.jpg'}" alt="${project.title}">
+                </div>
+                <div class="project-admin-info">
+                    <h4>${project.title}</h4>
+                    <p>${project.description.substring(0, 60)}...</p>
+                    <div class="project-admin-tags">
+                        ${project.tags.map(tag => `<span>${tag}</span>`).join('')}
+                    </div>
+                </div>
+                <div class="project-admin-actions">
+                    <button class="btn-icon edit" onclick="editProject('${project._id}')"><i class="fas fa-pen"></i></button>
+                    <button class="btn-icon delete" onclick="deleteProject('${project._id}')"><i class="fas fa-trash"></i></button>
+                </div>
+            `;
+            projectsContainer.appendChild(el);
+        });
+    }
+
+    function renderMessages() {
+        if (!messagesContainer) return;
+        messagesContainer.innerHTML = '';
+        
+        if (state.messages.length === 0) {
+            messagesContainer.innerHTML = '<p class="no-data">No messages yet.</p>';
+            return;
+        }
+
+        state.messages.forEach(msg => {
+            const date = new Date(msg.createdAt).toLocaleDateString();
+            const el = document.createElement('div');
+            el.className = `message-card ${msg.read ? 'read' : 'unread'}`;
+            el.innerHTML = `
+                <div class="message-header">
+                    <span class="message-sender">${msg.name}</span>
+                    <span class="message-date">${date}</span>
+                </div>
+                <div class="message-email">${msg.email}</div>
+                <div class="message-subject">Subject: ${msg.subject}</div>
+                <div class="message-body">${msg.message}</div>
+                <div class="message-actions">
+                    ${!msg.read ? `<button onclick="markAsRead('${msg._id}')" class="btn-text">Mark as Read</button>` : ''}
+                    <button onclick="deleteMessage('${msg._id}')" class="btn-text delete">Delete</button>
+                </div>
+            `;
+            messagesContainer.appendChild(el);
+        });
+    }
+
+    function fillSocialForm() {
+        if (!socialForm) return;
+        const s = state.settings.socialLinks || {};
+        document.getElementById('social-github').value = s.github || '';
+        document.getElementById('social-linkedin').value = s.linkedin || '';
+        document.getElementById('social-twitter').value = s.twitter || '';
+        document.getElementById('social-email').value = state.settings.contactEmail || '';
+    }
+
+    function updateOverviewStats() {
+        const totalProjects = document.getElementById('stat-total-projects');
+        const unreadMessages = document.getElementById('stat-unread-messages');
+        
+        if (totalProjects) totalProjects.textContent = state.projects.length;
+        if (unreadMessages) unreadMessages.textContent = state.messages.filter(m => !m.read).length;
+    }
+
+    // Event Listeners
     function setupEventListeners() {
-        // Login
         loginForm.addEventListener('submit', handleLogin);
         logoutBtn.addEventListener('click', handleLogout);
 
-        // Tabs
         navItems.forEach(item => {
             item.addEventListener('click', () => {
                 const tabId = item.getAttribute('data-tab');
@@ -104,99 +258,148 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
 
-        // Actions
-        addProjectBtn.addEventListener('click', () => {
-            const title = prompt('Enter Project Title:');
-            if (title) {
-                const newProject = {
-                    id: Date.now(),
-                    title: title,
-                    category: 'New Project',
-                    description: 'Description pending...'
-                };
-                state.projects.unshift(newProject);
-                renderProjects();
-            }
-        });
+        // Project Modal
+        addProjectBtn.addEventListener('click', () => openProjectModal());
+        closeModalBtn.addEventListener('click', () => projectModal.classList.remove('active'));
+        projectForm.addEventListener('submit', handleProjectSubmit);
 
-        addSkillBtn.addEventListener('click', () => {
-            const skill = prompt('Enter new skill:');
-            if (skill) {
-                state.skills.push(skill);
-                renderSkills();
-            }
+        // Social Form
+        socialForm.addEventListener('submit', handleSocialSubmit);
+
+        // Close modal on outside click
+        window.addEventListener('click', (e) => {
+            if (e.target === projectModal) projectModal.classList.remove('active');
         });
     }
 
     function switchTab(tabId) {
-        // Update State
         state.activeTab = tabId;
-
-        // Update Nav UI
         navItems.forEach(item => {
-            if (item.getAttribute('data-tab') === tabId) {
-                item.classList.add('active');
-            } else {
-                item.classList.remove('active');
-            }
+            item.classList.toggle('active', item.getAttribute('data-tab') === tabId);
         });
-
-        // Update Content UI
         tabContents.forEach(content => {
-            if (content.id === `tab-${tabId}`) {
-                content.classList.add('active');
-            } else {
-                content.classList.remove('active');
-            }
+            content.classList.toggle('active', content.id === `tab-${tabId}`);
         });
-
-        // Update Header
         pageTitle.textContent = tabId.charAt(0).toUpperCase() + tabId.slice(1);
     }
 
-    // Render Functions
-    function renderProjects() {
-        projectsContainer.innerHTML = '';
-        state.projects.forEach(project => {
-            const el = document.createElement('div');
-            el.className = 'project-item';
-            el.innerHTML = `
-                <div class="project-info">
-                    <h4>${project.title}</h4>
-                    <p>${project.category} • ${project.description}</p>
-                </div>
-                <div class="project-actions">
-                    <button class="btn-icon" title="Edit"><i class="fas fa-pen"></i></button>
-                    <button class="btn-icon delete" title="Delete" onclick="deleteProject(${project.id})"><i class="fas fa-trash"></i></button>
-                </div>
-            `;
-            projectsContainer.appendChild(el);
-        });
+    // Project Actions
+    function openProjectModal(project = null) {
+        const title = document.getElementById('modal-title');
+        const form = document.getElementById('project-form');
+        form.reset();
+        
+        if (project) {
+            title.textContent = 'Edit Project';
+            document.getElementById('project-id').value = project._id;
+            document.getElementById('project-title').value = project.title;
+            document.getElementById('project-description').value = project.description;
+            document.getElementById('project-image').value = project.image;
+            document.getElementById('project-tags').value = project.tags.join(', ');
+            document.getElementById('project-link').value = project.liveLink || '';
+            document.getElementById('project-github').value = project.githubLink || '';
+        } else {
+            title.textContent = 'Add New Project';
+            document.getElementById('project-id').value = '';
+        }
+        
+        projectModal.classList.add('active');
     }
 
-    function renderSkills() {
-        skillsContainer.innerHTML = '';
-        state.skills.forEach((skill, index) => {
-            const el = document.createElement('div');
-            el.className = 'skill-tag';
-            el.innerHTML = `
-                <span>${skill}</span>
-                <i class="fas fa-times" onclick="removeSkill(${index})"></i>
-            `;
-            skillsContainer.appendChild(el);
-        });
+    async function handleProjectSubmit(e) {
+        e.preventDefault();
+        const id = document.getElementById('project-id').value;
+        const projectData = {
+            title: document.getElementById('project-title').value,
+            description: document.getElementById('project-description').value,
+            image: document.getElementById('project-image').value,
+            tags: document.getElementById('project-tags').value.split(',').map(t => t.trim()),
+            liveLink: document.getElementById('project-link').value,
+            githubLink: document.getElementById('project-github').value
+        };
+
+        try {
+            const method = id ? 'PUT' : 'POST';
+            const endpoint = id ? `/projects/${id}` : '/projects';
+            
+            const res = await fetchWithAuth(endpoint, {
+                method,
+                body: JSON.stringify(projectData)
+            });
+
+            if (res.ok) {
+                projectModal.classList.remove('active');
+                loadProjects();
+            } else {
+                const data = await res.json();
+                alert(data.msg || 'Error saving project');
+            }
+        } catch (err) {
+            console.error('Error saving project:', err);
+        }
     }
 
-    // Expose functions to window for inline onclicks (mock simplicity)
-    window.deleteProject = function (id) {
-        if (confirm('Delete this project?')) {
-            state.projects = state.projects.filter(p => p.id !== id);
-            renderProjects();
+    window.editProject = function(id) {
+        const project = state.projects.find(p => p._id === id);
+        if (project) openProjectModal(project);
+    };
+
+    window.deleteProject = async function(id) {
+        if (!confirm('Are you sure you want to delete this project?')) return;
+        try {
+            const res = await fetchWithAuth(`/projects/${id}`, { method: 'DELETE' });
+            if (res.ok) loadProjects();
+        } catch (err) {
+            console.error('Error deleting project:', err);
         }
     };
 
-    window.removeSkill = function (index) {
-        state.skills.splice(index, 1);
-        renderSkills();
+    // Message Actions
+    window.markAsRead = async function(id) {
+        try {
+            const res = await fetchWithAuth(`/contacts/${id}/read`, { method: 'PUT' });
+            if (res.ok) loadMessages();
+        } catch (err) {
+            console.error('Error marking message as read:', err);
+        }
     };
+
+    window.deleteMessage = async function(id) {
+        if (!confirm('Delete this message?')) return;
+        try {
+            const res = await fetchWithAuth(`/contacts/${id}`, { method: 'DELETE' });
+            if (res.ok) loadMessages();
+        } catch (err) {
+            console.error('Error deleting message:', err);
+        }
+    };
+
+    // Social Actions
+    async function handleSocialSubmit(e) {
+        e.preventDefault();
+        const settingsData = {
+            contactEmail: document.getElementById('social-email').value,
+            socialLinks: {
+                github: document.getElementById('social-github').value,
+                linkedin: document.getElementById('social-linkedin').value,
+                twitter: document.getElementById('social-twitter').value
+            }
+        };
+
+        try {
+            const res = await fetchWithAuth('/settings', {
+                method: 'PUT',
+                body: JSON.stringify(settingsData)
+            });
+
+            if (res.ok) {
+                alert('Settings updated successfully!');
+                loadSettings();
+            } else {
+                alert('Error updating settings');
+            }
+        } catch (err) {
+            console.error('Error updating settings:', err);
+        }
+    }
 });

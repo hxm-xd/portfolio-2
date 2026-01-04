@@ -75,23 +75,34 @@ function showToast(message, duration = 3000) {
 // Contact form submission
 const contactForm = document.getElementById('contactForm');
 if (contactForm) {
-    contactForm.addEventListener('submit', function(e) {
+    contactForm.addEventListener('submit', async function(e) {
         e.preventDefault();
         
         const formData = {
             name: document.getElementById('name').value,
             email: document.getElementById('email').value,
+            subject: document.getElementById('subject') ? document.getElementById('subject').value : 'Portfolio Contact',
             message: document.getElementById('message').value
         };
         
-        // Log form data (in production, send to server)
-        console.log('Form submitted:', formData);
-        
-        // Show success message
-        showToast('Message sent successfully! I will get back to you soon.');
-        
-        // Reset form
-        contactForm.reset();
+        try {
+            const response = await fetch('http://localhost:5000/api/contacts', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(formData)
+            });
+
+            if (response.ok) {
+                showToast('Message sent successfully! I will get back to you soon.');
+                contactForm.reset();
+            } else {
+                const data = await response.json();
+                showToast(data.msg || 'Error sending message. Please try again.');
+            }
+        } catch (err) {
+            console.error('Contact error:', err);
+            showToast('Server error. Please try again later.');
+        }
     });
 }
 
@@ -123,7 +134,96 @@ document.addEventListener('DOMContentLoaded', () => {
         el.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
         observer.observe(el);
     });
+
+    // Fetch projects if on projects page
+    if (document.getElementById('projects-container')) {
+        fetchProjects();
+    }
+
+    // Fetch settings for social links
+    fetchSettings();
 });
+
+async function fetchSettings() {
+    try {
+        const response = await fetch('http://localhost:5000/api/settings');
+        const settings = await response.json();
+        
+        if (settings && settings.socialLinks) {
+            updateSocialLinks(settings);
+        }
+    } catch (err) {
+        console.error('Error fetching settings:', err);
+    }
+}
+
+function updateSocialLinks(settings) {
+    const { socialLinks, contactEmail } = settings;
+    
+    // Update GitHub links
+    document.querySelectorAll('a[aria-label="GitHub"]').forEach(a => {
+        if (socialLinks.github) a.href = socialLinks.github;
+    });
+    
+    // Update LinkedIn links
+    document.querySelectorAll('a[aria-label="LinkedIn"]').forEach(a => {
+        if (socialLinks.linkedin) a.href = socialLinks.linkedin;
+    });
+    
+    // Update Twitter links (if any)
+    document.querySelectorAll('a[aria-label="Twitter"]').forEach(a => {
+        if (socialLinks.twitter) a.href = socialLinks.twitter;
+    });
+    
+    // Update Email links
+    document.querySelectorAll('a[aria-label="Email"]').forEach(a => {
+        if (contactEmail) a.href = `mailto:${contactEmail}`;
+    });
+}
+
+async function fetchProjects() {
+    const container = document.getElementById('projects-container');
+    try {
+        const response = await fetch('http://localhost:5000/api/projects');
+        const projects = await response.json();
+        
+        if (projects.length === 0) {
+            container.innerHTML = '<p class="no-data">No projects found.</p>';
+            return;
+        }
+
+        container.innerHTML = '';
+        projects.forEach(project => {
+            const card = document.createElement('div');
+            card.className = 'project-card';
+            card.style.setProperty('--gradient', 'linear-gradient(135deg, hsl(150 100% 50%), hsl(180 100% 50%))');
+            
+            card.innerHTML = `
+                <div class="project-header">
+                    <h3 class="project-title">${project.title}</h3>
+                    <div class="project-tags">
+                        ${project.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+                    </div>
+                </div>
+                <p class="project-description">${project.description}</p>
+                <div class="project-buttons">
+                    ${project.liveLink ? `<a href="${project.liveLink}" target="_blank" rel="noopener" class="btn-link">Live Demo <i class="fas fa-external-link-alt"></i></a>` : ''}
+                    ${project.githubLink ? `<a href="${project.githubLink}" target="_blank" rel="noopener" class="btn-link">GitHub <i class="fab fa-github"></i></a>` : ''}
+                </div>
+            `;
+            container.appendChild(card);
+            
+            // Observe new card
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+            observer.observe(card);
+        });
+    } catch (err) {
+        console.error('Error fetching projects:', err);
+        container.innerHTML = '<p class="error">Failed to load projects. Please try again later.</p>';
+    }
+}
 
 /*
 // Active navigation link highlight

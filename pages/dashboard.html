@@ -67,13 +67,13 @@
               <i class="fas fa-project-diagram"></i>
               <span>Projects</span>
             </button>
-            <button class="nav-item" data-tab="skills">
-              <i class="fas fa-code"></i>
-              <span>Skills</span>
-            </button>
-            <button class="nav-item" data-tab="contact">
+            <button class="nav-item" data-tab="messages">
               <i class="fas fa-envelope"></i>
-              <span>Contact Info</span>
+              <span>Messages</span>
+            </button>
+            <button class="nav-item" data-tab="social">
+              <i class="fas fa-share-alt"></i>
+              <span>Social Links</span>
             </button>
           </nav>
           <div class="sidebar-footer">
@@ -158,53 +158,65 @@
               <div class="content-header">
                 <h3>Manage Projects</h3>
                 <button class="btn-primary" id="add-project-btn">
-                  <i class="fas fa-plus"></i> Add New
+                  <i class="fas fa-plus"></i> Add New Project
                 </button>
               </div>
-              <div class="projects-list" id="projects-list-container">
+              <div class="projects-grid-admin" id="projects-list-container">
                 <!-- Projects injected by JS -->
               </div>
             </div>
 
-            <!-- Skills Tab Content -->
-            <div id="tab-skills" class="tab-content">
+            <!-- Messages Tab Content -->
+            <div id="tab-messages" class="tab-content">
               <div class="content-header">
-                <h3>Manage Skills</h3>
-                <button class="btn-primary" id="add-skill-btn">
-                  <i class="fas fa-plus"></i> Add Skill
-                </button>
+                <h3>Contact Messages</h3>
               </div>
-              <div class="skills-editor" id="skills-container">
-                <!-- Skills injected by JS -->
+              <div class="messages-list" id="messages-container">
+                <!-- Messages injected by JS -->
               </div>
             </div>
 
-            <!-- Contact Tab Content -->
-            <div id="tab-contact" class="tab-content">
+            <!-- Social Links Tab Content -->
+            <div id="tab-social" class="tab-content">
               <div class="content-header">
-                <h3>Update Contact Info</h3>
+                <h3>Social Media & Links</h3>
               </div>
-              <form id="contact-update-form" class="settings-form">
+              <form id="social-links-form" class="settings-form">
                 <div class="form-group">
-                  <label>Email Address</label>
-                  <input type="email" value="HamoodThariq@outlook.com" />
-                </div>
-                <div class="form-group">
-                  <label>Phone Number</label>
-                  <input type="tel" value="+94 78 676 2734" />
-                </div>
-                <div class="form-group">
-                  <label>LinkedIn URL</label>
+                  <label><i class="fab fa-github"></i> GitHub URL</label>
                   <input
                     type="url"
-                    value="https://www.linkedin.com/in/hamood-thariq-979409289/"
+                    id="social-github"
+                    placeholder="https://github.com/..."
                   />
                 </div>
                 <div class="form-group">
-                  <label>GitHub URL</label>
-                  <input type="url" value="https://github.com/hxm-xd" />
+                  <label><i class="fab fa-linkedin"></i> LinkedIn URL</label>
+                  <input
+                    type="url"
+                    id="social-linkedin"
+                    placeholder="https://linkedin.com/in/..."
+                  />
                 </div>
-                <button type="submit" class="btn-primary">Save Changes</button>
+                <div class="form-group">
+                  <label><i class="fab fa-twitter"></i> Twitter URL</label>
+                  <input
+                    type="url"
+                    id="social-twitter"
+                    placeholder="https://twitter.com/..."
+                  />
+                </div>
+                <div class="form-group">
+                  <label><i class="fas fa-envelope"></i> Contact Email</label>
+                  <input
+                    type="email"
+                    id="social-email"
+                    placeholder="your@email.com"
+                  />
+                </div>
+                <button type="submit" class="btn-primary">
+                  Save Social Links
+                </button>
               </form>
             </div>
           </div>
@@ -212,6 +224,74 @@
       </div>
     </div>
 
-    <script src="../js/dashboard.js"></script>
+    <!-- Project Modal -->
+    <div id="project-modal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 id="modal-title">Add New Project</h3>
+          <button class="close-modal">&times;</button>
+        </div>
+        <form id="project-form">
+          <input type="hidden" id="project-id" />
+          <div class="form-group">
+            <label>Project Title</label>
+            <input type="text" id="project-title" required />
+          </div>
+          <div class="form-group">
+            <label>Description</label>
+            <textarea id="project-description" rows="4" required></textarea>
+          </div>
+          <div class="form-group">
+            <label>Image URL</label>
+            <input
+              type="text"
+              id="project-image"
+              placeholder="assets/projects/..."
+            />
+          </div>
+          <div class="form-group">
+            <label>Tags (comma separated)</label>
+            <input
+              type="text"
+              id="project-tags"
+              placeholder="React, Node.js, MongoDB"
+            />
+          </div>
+          <div class="form-group">
+            <label>Live Link</label>
+            <input type="url" id="project-link" />
+          </div>
+          <div class="form-group">
+            <label>GitHub Link</label>
+            <input type="url" id="project-github" />
+          </div>
+          <button type="submit" class="btn-primary">Save Project</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Firebase SDKs -->
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+      import { getAuth } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+      import { getFirestore } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+      // Your web app's Firebase configuration
+      const firebaseConfig = {
+        apiKey: "YOUR_API_KEY",
+        authDomain: "YOUR_AUTH_DOMAIN",
+        projectId: "YOUR_PROJECT_ID",
+        storageBucket: "YOUR_STORAGE_BUCKET",
+        messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+        appId: "YOUR_APP_ID"
+      };
+
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+      window.auth = getAuth(app);
+      window.db = getFirestore(app);
+    </script>
+
+    <script type="module" src="../js/dashboard.js"></script>
   </body>
 </html>
