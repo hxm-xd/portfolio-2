@@ -2178,6 +2178,10 @@ body {
         margin: 0 auto; /* Center text in footer columns */
     }
 
+    .footer-col .social-links {
+        justify-content: center;
+    }
+
     .footer-bottom {
         flex-direction: column;
         gap: 1rem;
