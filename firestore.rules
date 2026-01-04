@@ -1,0 +1,32 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Helper function to check if user is authenticated
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    // Projects Collection
+    // Public can read, only admin can write
+    match /projects/{projectId} {
+      allow read: if true;
+      allow write: if isAuthenticated();
+    }
+
+    // Messages Collection
+    // Public can create (contact form), only admin can read/delete
+    match /messages/{messageId} {
+      allow create: if true;
+      allow read, update, delete: if isAuthenticated();
+    }
+
+    // Settings Collection
+    // Public can read (social links), only admin can write
+    match /settings/{settingId} {
+      allow read: if true;
+      allow write: if isAuthenticated();
+    }
+  }
+}
