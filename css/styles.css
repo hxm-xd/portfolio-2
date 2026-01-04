@@ -106,6 +106,7 @@ body {
 .nav-links {
     display: none;
     gap: 2rem;
+    justify-content: center;
 }
 
 .nav-link {
@@ -242,6 +243,11 @@ body {
 }
 
 @media (min-width: 768px) {
+    .nav-container {
+        display: grid;
+        grid-template-columns: 1fr auto 1fr;
+    }
+
     .nav-links {
         display: flex;
     }
@@ -2129,7 +2135,7 @@ body {
 @media (min-width: 1024px) {
     .projects-grid { column-count: 3; }
 }
-}
+
 
 /* New Header Styles */
 .glass-nav {
@@ -2167,6 +2173,7 @@ body {
     display: flex;
     align-items: center;
     gap: 1.5rem;
+    justify-content: flex-end;
 }
 
 .header-socials {
