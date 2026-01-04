@@ -285,6 +285,23 @@ body {
     display: block;
 }
 
+.particles-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+    background: radial-gradient(circle at 50% 50%, rgba(20, 20, 30, 0.5) 0%, var(--background) 100%);
+}
+
+.particles-container canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
 .hero-container {
     display: flex;
     align-items: center;
@@ -1766,6 +1783,313 @@ body {
 
 .form-group textarea {
     resize: vertical;
+}
+
+/* ============================================
+   SECTION-SPECIFIC SPACE ANIMATIONS
+   ============================================ */
+
+/* ABOUT SECTION - Floating Nebula Clouds */
+.nebula-bg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 0;
+}
+
+.nebula-cloud {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(60px);
+    animation: nebulaDrift 25s ease-in-out infinite;
+}
+
+.nebula-cloud-1 {
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(0, 255, 136, 0.08) 0%, transparent 70%);
+    top: -10%;
+    right: -5%;
+}
+
+.nebula-cloud-2 {
+    width: 350px;
+    height: 350px;
+    background: radial-gradient(circle, rgba(138, 92, 219, 0.06) 0%, transparent 70%);
+    bottom: -15%;
+    left: -10%;
+    animation-delay: -12s;
+}
+
+.nebula-cloud-3 {
+    width: 250px;
+    height: 250px;
+    background: radial-gradient(circle, rgba(100, 200, 255, 0.05) 0%, transparent 70%);
+    top: 40%;
+    left: 30%;
+    animation-delay: -8s;
+}
+
+@keyframes nebulaDrift {
+    0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.6; }
+    33% { transform: translate(30px, -20px) scale(1.1); opacity: 0.8; }
+    66% { transform: translate(-20px, 30px) scale(0.9); opacity: 0.5; }
+}
+
+/* PROJECTS SECTION - Asteroid Belt */
+.asteroid-belt {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 0;
+}
+
+.asteroid {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 50%;
+    animation: asteroidFloat linear infinite;
+}
+
+.asteroid-1 { width: 4px; height: 4px; top: 15%; animation-duration: 35s; left: -20px; }
+.asteroid-2 { width: 3px; height: 3px; top: 35%; animation-duration: 28s; animation-delay: -5s; left: -20px; }
+.asteroid-3 { width: 5px; height: 5px; top: 55%; animation-duration: 40s; animation-delay: -15s; left: -20px; }
+.asteroid-4 { width: 2px; height: 2px; top: 75%; animation-duration: 32s; animation-delay: -8s; left: -20px; }
+.asteroid-5 { width: 3px; height: 3px; top: 25%; animation-duration: 45s; animation-delay: -20s; left: -20px; }
+.asteroid-6 { width: 4px; height: 4px; top: 85%; animation-duration: 38s; animation-delay: -12s; left: -20px; }
+
+@keyframes asteroidFloat {
+    0% { transform: translateX(0) translateY(0) rotate(0deg); opacity: 0; }
+    5% { opacity: 0.6; }
+    95% { opacity: 0.6; }
+    100% { transform: translateX(calc(100vw + 40px)) translateY(-50px) rotate(180deg); opacity: 0; }
+}
+
+/* SKILLS SECTION - Binary Rain */
+.binary-rain {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 0;
+    opacity: 0.15;
+}
+
+.binary-column {
+    position: absolute;
+    top: -100%;
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+    color: var(--primary);
+    writing-mode: vertical-rl;
+    animation: binaryFall linear infinite;
+    text-shadow: 0 0 8px var(--primary);
+}
+
+.binary-column:nth-child(1) { left: 5%; animation-duration: 15s; }
+.binary-column:nth-child(2) { left: 15%; animation-duration: 18s; animation-delay: -3s; }
+.binary-column:nth-child(3) { left: 25%; animation-duration: 12s; animation-delay: -7s; }
+.binary-column:nth-child(4) { left: 45%; animation-duration: 20s; animation-delay: -2s; }
+.binary-column:nth-child(5) { left: 65%; animation-duration: 14s; animation-delay: -9s; }
+.binary-column:nth-child(6) { left: 80%; animation-duration: 17s; animation-delay: -5s; }
+.binary-column:nth-child(7) { left: 92%; animation-duration: 13s; animation-delay: -11s; }
+
+@keyframes binaryFall {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(200%); }
+}
+
+/* EXPERIENCE SECTION - Shooting Stars */
+.shooting-stars {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 0;
+}
+
+.shooting-star {
+    position: absolute;
+    width: 100px;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(255,255,255,0.8), transparent);
+    animation: shootingStar linear infinite;
+    opacity: 0;
+}
+
+.shooting-star::before {
+    content: '';
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: white;
+    border-radius: 50%;
+    left: 0;
+    top: -2.5px;
+    box-shadow: 0 0 10px white, 0 0 20px rgba(0, 255, 136, 0.5);
+}
+
+.shooting-star-1 { top: 20%; right: -100px; animation-duration: 2s; animation-delay: 1s; }
+.shooting-star-2 { top: 40%; right: -100px; animation-duration: 1.8s; animation-delay: 4s; }
+.shooting-star-3 { top: 60%; right: -100px; animation-duration: 2.2s; animation-delay: 7s; }
+.shooting-star-4 { top: 30%; right: -100px; animation-duration: 1.5s; animation-delay: 10s; }
+
+@keyframes shootingStar {
+    0% { transform: translateX(0) translateY(0); opacity: 0; }
+    10% { opacity: 1; }
+    100% { transform: translateX(-120vw) translateY(50px); opacity: 0; }
+}
+
+/* EDUCATION SECTION - Constellation */
+.constellation-bg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.constellation-star {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: white;
+    border-radius: 50%;
+    animation: constellationPulse 4s ease-in-out infinite;
+}
+
+.constellation-star::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(255,255,255,0.3), transparent);
+    top: 50%;
+    left: 100%;
+    transform: translateY(-50%);
+}
+
+.constellation-star-1 { top: 15%; left: 10%; }
+.constellation-star-1::after { width: 80px; transform: translateY(-50%) rotate(25deg); }
+.constellation-star-2 { top: 25%; left: 18%; animation-delay: -1s; }
+.constellation-star-2::after { width: 60px; transform: translateY(-50%) rotate(-15deg); }
+.constellation-star-3 { top: 20%; left: 25%; animation-delay: -2s; }
+.constellation-star-4 { top: 70%; right: 15%; animation-delay: -0.5s; }
+.constellation-star-4::after { width: 70px; transform: translateY(-50%) rotate(160deg); }
+.constellation-star-5 { top: 80%; right: 25%; animation-delay: -1.5s; }
+.constellation-star-5::after { width: 50px; transform: translateY(-50%) rotate(-170deg); }
+.constellation-star-6 { top: 75%; right: 20%; animation-delay: -2.5s; }
+
+@keyframes constellationPulse {
+    0%, 100% { opacity: 0.4; transform: scale(1); box-shadow: 0 0 4px white; }
+    50% { opacity: 1; transform: scale(1.3); box-shadow: 0 0 12px white, 0 0 20px rgba(0, 255, 136, 0.3); }
+}
+
+/* VENTURES SECTION - Expanding Rings (Radar) */
+.radar-bg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 0;
+}
+
+.radar-ring {
+    position: absolute;
+    border: 1px solid rgba(0, 255, 136, 0.2);
+    border-radius: 50%;
+    animation: radarExpand 4s ease-out infinite;
+    opacity: 0;
+}
+
+.radar-center {
+    top: 20%;
+    right: 10%;
+}
+
+.radar-center .radar-ring-1 { width: 50px; height: 50px; margin: -25px; }
+.radar-center .radar-ring-2 { width: 50px; height: 50px; margin: -25px; animation-delay: 1s; }
+.radar-center .radar-ring-3 { width: 50px; height: 50px; margin: -25px; animation-delay: 2s; }
+.radar-center .radar-ring-4 { width: 50px; height: 50px; margin: -25px; animation-delay: 3s; }
+
+.radar-center-2 {
+    bottom: 30%;
+    left: 15%;
+}
+
+.radar-center-2 .radar-ring {
+    border-color: rgba(138, 92, 219, 0.2);
+}
+
+.radar-center-2 .radar-ring-1 { width: 40px; height: 40px; margin: -20px; animation-delay: 0.5s; }
+.radar-center-2 .radar-ring-2 { width: 40px; height: 40px; margin: -20px; animation-delay: 1.5s; }
+.radar-center-2 .radar-ring-3 { width: 40px; height: 40px; margin: -20px; animation-delay: 2.5s; }
+.radar-center-2 .radar-ring-4 { width: 40px; height: 40px; margin: -20px; animation-delay: 3.5s; }
+
+@keyframes radarExpand {
+    0% { transform: scale(1); opacity: 0.8; }
+    100% { transform: scale(8); opacity: 0; }
+}
+
+/* CONTACT SECTION - Warp Speed Lines */
+.warp-bg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 0;
+    perspective: 500px;
+}
+
+.warp-line {
+    position: absolute;
+    width: 2px;
+    height: 100px;
+    background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.5), transparent);
+    animation: warpStretch 3s ease-in infinite;
+    opacity: 0;
+    transform-origin: center center;
+}
+
+.warp-line-1 { top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(0deg); animation-delay: 0s; }
+.warp-line-2 { top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(30deg); animation-delay: 0.2s; }
+.warp-line-3 { top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(60deg); animation-delay: 0.4s; }
+.warp-line-4 { top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(90deg); animation-delay: 0.6s; }
+.warp-line-5 { top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(120deg); animation-delay: 0.8s; }
+.warp-line-6 { top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(150deg); animation-delay: 1s; }
+.warp-line-7 { top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(180deg); animation-delay: 1.2s; }
+.warp-line-8 { top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(210deg); animation-delay: 1.4s; }
+.warp-line-9 { top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(240deg); animation-delay: 1.6s; }
+.warp-line-10 { top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(270deg); animation-delay: 1.8s; }
+.warp-line-11 { top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(300deg); animation-delay: 2s; }
+.warp-line-12 { top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(330deg); animation-delay: 2.2s; }
+
+@keyframes warpStretch {
+    0% { height: 0; opacity: 0; }
+    20% { opacity: 0.6; }
+    100% { height: 60vh; opacity: 0; }
 }
 
 /* Footer */
